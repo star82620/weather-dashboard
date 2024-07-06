@@ -83,6 +83,5 @@ html,body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #ddd;
 }
 `;
