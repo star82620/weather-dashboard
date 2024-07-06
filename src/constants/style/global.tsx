@@ -78,4 +78,11 @@ html,body {
   font-weight: 400;
   line-height: 1.5;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #ddd;
+}
 `;
