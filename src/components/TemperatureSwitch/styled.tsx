@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: fit-content;
-  padding: 4px;
+  padding: 4px 8px;
   background: #f0f0f0;
   border-radius: ${({ theme }) => theme.borderRadius.common};
 `;
