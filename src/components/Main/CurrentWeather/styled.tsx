@@ -50,3 +50,5 @@ export const Humidity = styled.div`
 export const WindSpeed = styled.div`
   ${TextAlignCenter}
 `;
+
+export const WeatherIcon = styled.div``;

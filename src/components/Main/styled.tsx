@@ -33,15 +33,15 @@ export const DayCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
 
   padding: 24px;
   border: 1px solid ${({ theme }) => theme.colors.grayLight};
   border-radius: ${({ theme }) => theme.borderRadius.common};
 `;
 
-export const Image = styled.img``;
-
-export const DateText = styled.p`
-  align-self: flex-start;
+export const ImageWrapper = styled.div`
+  max-width: 136px;
 `;
+
+export const DateText = styled.p``;

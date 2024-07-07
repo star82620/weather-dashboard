@@ -13,3 +13,8 @@ export const TemperatureValue = styled.div<Unit>`
       }
     `}
 `;
+
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;

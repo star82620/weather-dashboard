@@ -1,4 +1,6 @@
 import { TemperatureValue } from "../../../constants/style/commonStyled";
+import { FormattedCurrent } from "../../../constants/types/WeatherData";
+import { generateWeatherIcon } from "../../../helper/generateWeatherIcon";
 import {
   Wrapper,
   City,
@@ -10,29 +12,59 @@ import {
   Time,
   Title,
   WindSpeed,
+  WeatherIcon,
 } from "./styled";
 
-export default function CurrentWeather() {
+type CurrentWeatherProps = {
+  dataset: FormattedCurrent;
+  location: string;
+};
+
+export default function CurrentWeather({
+  dataset,
+  location,
+}: CurrentWeatherProps) {
+  const {
+    time, //更新時間
+    weather_code,
+    is_day,
+    temperature_2m,
+    relative_humidity_2m,
+    wind_speed_10m,
+  } = dataset;
+
+  const isDay = !!is_day;
+  const weatherIcon = generateWeatherIcon(weather_code, isDay);
+  const temperatureUnit = temperature_2m.unit;
+
   return (
     <Wrapper>
-      <Time>07/06 18:13</Time>
+      <Time>{time}</Time>
       <Location>
-        <City>Tainan</City>
+        <City>{location}</City>
         <Country>Taiwan</Country>
       </Location>
       <Temperature>
-        <TemperatureValue $unit="℃">32</TemperatureValue>
+        <TemperatureValue $unit={temperatureUnit}>
+          {temperature_2m.value}
+        </TemperatureValue>
         <Title>Temperature</Title>
       </Temperature>
       <Humidity>
-        <Content>30%</Content>
+        <Content>
+          {relative_humidity_2m.value}
+          {relative_humidity_2m.unit}
+        </Content>
         <Title>Humidity</Title>
       </Humidity>
       <WindSpeed>
-        <Content>4 km/hr</Content>
+        <Content>
+          {wind_speed_10m.value}
+          {wind_speed_10m.unit}
+        </Content>
         <Title>Wind Speed</Title>
       </WindSpeed>
-      {/* <Image src="/public/images/weather_code/02d@2x.png" alt="02d" /> */}
+      <WeatherIcon>{weatherIcon}</WeatherIcon>
     </Wrapper>
   );
 }

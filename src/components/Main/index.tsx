@@ -1,33 +1,35 @@
-import { TemperatureValue } from "../../constants/style/commonStyled";
-import { ResponseData } from "../../constants/types/WeatherData";
 import { formatWeatherData } from "../../helper/formatWeatherData";
 import CurrentWeather from "./CurrentWeather";
+import {
+  FormattedDaily,
+  ResponseData,
+} from "../../constants/types/WeatherData";
+import { TemperatureValue } from "../../constants/style/commonStyled";
 import {
   Wrapper,
   Forecast,
   DayCard,
   DateText,
   ForecastTitle,
-  Image,
   CardsWrapper,
+  ImageWrapper,
 } from "./styled";
+import { generateWeatherIcon } from "../../helper/generateWeatherIcon";
 
-const Cards = ({ dataset }) => {
-  console.log("d", dataset);
-  // if (typeof dataset !== "object") return null;
+type CardsProps = { dataset: FormattedDaily[] };
+
+const Cards = ({ dataset }: CardsProps) => {
   if (!Array.isArray(dataset)) return null;
 
   const cards = dataset.map((card) => {
     const { time, weather_code, temperature_2m_max, temperature_2m_min } = card;
     const minTemperature = temperature_2m_min.value;
     const maxTemperature = temperature_2m_max.value;
+    const weatherIcon = generateWeatherIcon(weather_code);
 
     return (
       <DayCard key={time}>
-        <Image
-          src={"/public/images/weather_code/02d@2x.png"}
-          alt="weather-02d"
-        />
+        <ImageWrapper>{weatherIcon}</ImageWrapper>
         <DateText>{time}</DateText>
         <TemperatureValue $unit="℃">
           {minTemperature}~{maxTemperature}
@@ -60,7 +62,7 @@ const dataset: ResponseData = {
     time: "2024-07-07T03:00",
     interval: 900,
     temperature_2m: 30.3,
-    relative_humidity_2m: 77,
+    relative_humidity_2m: 773,
     is_day: 1,
     weather_code: 1,
     wind_speed_10m: 12.3,
@@ -79,7 +81,7 @@ const dataset: ResponseData = {
       "2024-07-10",
       "2024-07-11",
     ],
-    weather_code: [53, 3, 95, 80, 3],
+    weather_code: [1, 2, 95, 80, 3],
     temperature_2m_max: [30.4, 30.2, 30.2, 32.5, 32.6],
     temperature_2m_min: [27.2, 27.1, 27.0, 28.6, 28.9],
   },
@@ -91,9 +93,11 @@ export default function Main() {
   const city = "Taipei";
   const { current, forecasts } = formattedData;
 
+  console.log(forecasts);
+
   return (
     <Wrapper>
-      <CurrentWeather />
+      <CurrentWeather dataset={current} location={city} />
       <Forecast>
         <ForecastTitle>5 Days Forecast</ForecastTitle>
         <Cards dataset={forecasts} />
