@@ -1,5 +1,9 @@
 import { ResponseData, FormattedData } from "../constants/types/WeatherData";
 
+const formatTemperature = (temp: number | string) => {
+  return parseInt(temp.toString());
+};
+
 export function formatWeatherData(dataset: ResponseData) {
   const { latitude, longitude, current_units, current, daily_units, daily } =
     dataset;
@@ -23,7 +27,7 @@ export function formatWeatherData(dataset: ResponseData) {
     weather_code,
     is_day,
     temperature_2m: {
-      value: temperature_2m,
+      value: formatTemperature(temperature_2m),
       unit: current_units["temperature_2m"],
     },
     relative_humidity_2m: {
@@ -42,11 +46,11 @@ export function formatWeatherData(dataset: ResponseData) {
       weather_code: daily["weather_code"][index],
       temperature_2m_max: {
         unit: daily_units["temperature_2m_max"],
-        value: daily["temperature_2m_max"][index],
+        value: formatTemperature(daily["temperature_2m_max"][index]),
       },
       temperature_2m_min: {
         unit: daily_units["temperature_2m_min"],
-        value: daily["temperature_2m_min"][index],
+        value: formatTemperature(daily["temperature_2m_min"][index]),
       },
     };
     return newDaily;

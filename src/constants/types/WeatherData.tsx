@@ -28,7 +28,7 @@ export type CurrentUnits = {
   temperature_2m: TemperatureUnit;
   relative_humidity_2m: "%";
   wind_speed_10m: WindSpeedUnit;
-  is_day: 1 | 0;
+  is_day: "";
   weather_code: "wmo code";
 };
 
