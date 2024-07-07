@@ -12,7 +12,7 @@ export const temperatureUnitSlice = createSlice({
   initialState,
   reducers: {
     switchUnit: (state, action: PayloadAction<Unit>) => {
-      state.value += action.payload;
+      state.value = action.payload;
     },
   },
 });

@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { switchUnit } from "../../redux/temperatureUnitSlice";
 import { Button, Wrapper } from "./styled";
 
-export default function TemperatureSwitch() {
-  const [active, setActive] = useState<"Celsius" | "Fahrenheit">("Celsius");
+export default function TemperatureUnitSwitch() {
+  const active = useAppSelector((state) => state.temperatureUnit.value);
+  const dispatch = useAppDispatch();
 
   const isCelsius = active === "Celsius";
   const isFahrenheit = active === "Fahrenheit";
 
   const handleSwitch = () => {
     if (active === "Celsius") {
-      return setActive("Fahrenheit");
+      return dispatch(switchUnit("Fahrenheit"));
     }
-    setActive("Celsius");
-
-    // 要存 cookie
+    dispatch(switchUnit("Celsius"));
   };
 
   return (

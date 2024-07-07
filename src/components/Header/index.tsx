@@ -1,12 +1,12 @@
 import SearchBar from "../SearchBar";
-import TemperatureSwitch from "../TemperatureSwitch";
+import TemperatureUnitSwitch from "../TemperatureUnitSwitch";
 import { Wrapper } from "./styled";
 
 export default function Header() {
   return (
     <Wrapper>
       <SearchBar />
-      <TemperatureSwitch />
+      <TemperatureUnitSwitch />
     </Wrapper>
   );
 }
