@@ -42,7 +42,7 @@ const CurrentWeatherSection = () => (
 );
 
 const Cards = () => {
-  return Array.from({ length: 5 }, (_, i) => (
+  return Array.from({ length: 5 }, (_) => (
     <DayCard>
       <Image src={"/public/images/weather_code/02d@2x.png"} alt="weather-02d" />
       <DateText>07/07</DateText>
