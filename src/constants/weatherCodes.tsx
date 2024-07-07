@@ -1,284 +1,285 @@
 import { WeatherCodes } from "./types/WeatherCodes";
+import { weatherIcons } from "./imagePaths";
 
 export const weatherCodes: WeatherCodes = {
   "0": {
     day: {
       description: "Sunny",
-      image: "/public/images/weather_code/01d@2x.png",
+      image: weatherIcons["01"].src.day,
     },
     night: {
       description: "Clear",
-      image: "/public/images/weather_code/01n@2x.png",
+      image: weatherIcons["01"].src.night,
     },
   },
   "1": {
     day: {
       description: "Mainly Sunny",
-      image: "/public/images/weather_code/01d@2x.png",
+      image: weatherIcons["01"].src.day,
     },
     night: {
       description: "Mainly Clear",
-      image: "/public/images/weather_code/01n@2x.png",
+      image: weatherIcons["01"].src.night,
     },
   },
   "2": {
     day: {
       description: "Partly Cloudy",
-      image: "/public/images/weather_code/02d@2x.png",
+      image: weatherIcons["02"].src.day,
     },
     night: {
       description: "Partly Cloudy",
-      image: "/public/images/weather_code/02n@2x.png",
+      image: weatherIcons["02"].src.night,
     },
   },
   "3": {
     day: {
       description: "Cloudy",
-      image: "/public/images/weather_code/03d@2x.png",
+      image: weatherIcons["03"].src.day,
     },
     night: {
       description: "Cloudy",
-      image: "/public/images/weather_code/03n@2x.png",
+      image: weatherIcons["03"].src.night,
     },
   },
   "45": {
     day: {
       description: "Foggy",
-      image: "/public/images/weather_code/50d@2x.png",
+      image: weatherIcons["50"].src.day,
     },
     night: {
       description: "Foggy",
-      image: "/public/images/weather_code/50n@2x.png",
+      image: weatherIcons["50"].src.night,
     },
   },
   "48": {
     day: {
       description: "Rime Fog",
-      image: "/public/images/weather_code/50d@2x.png",
+      image: weatherIcons["50"].src.day,
     },
     night: {
       description: "Rime Fog",
-      image: "/public/images/weather_code/50n@2x.png",
+      image: weatherIcons["03"].src.night,
     },
   },
   "51": {
     day: {
       description: "Light Drizzle",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Light Drizzle",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "53": {
     day: {
       description: "Drizzle",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Drizzle",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "55": {
     day: {
       description: "Heavy Drizzle",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Heavy Drizzle",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "56": {
     day: {
       description: "Light Freezing Drizzle",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Light Freezing Drizzle",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "57": {
     day: {
       description: "Freezing Drizzle",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Freezing Drizzle",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "61": {
     day: {
       description: "Light Rain",
-      image: "/public/images/weather_code/10d@2x.png",
+      image: weatherIcons["10"].src.day,
     },
     night: {
       description: "Light Rain",
-      image: "/public/images/weather_code/10n@2x.png",
+      image: weatherIcons["10"].src.night,
     },
   },
   "63": {
     day: {
       description: "Rain",
-      image: "/public/images/weather_code/10d@2x.png",
+      image: weatherIcons["10"].src.day,
     },
     night: {
       description: "Rain",
-      image: "/public/images/weather_code/10n@2x.png",
+      image: weatherIcons["10"].src.night,
     },
   },
   "65": {
     day: {
       description: "Heavy Rain",
-      image: "/public/images/weather_code/10d@2x.png",
+      image: weatherIcons["10"].src.day,
     },
     night: {
       description: "Heavy Rain",
-      image: "/public/images/weather_code/10n@2x.png",
+      image: weatherIcons["10"].src.night,
     },
   },
   "66": {
     day: {
       description: "Light Freezing Rain",
-      image: "/public/images/weather_code/10d@2x.png",
+      image: weatherIcons["10"].src.day,
     },
     night: {
       description: "Light Freezing Rain",
-      image: "/public/images/weather_code/10n@2x.png",
+      image: weatherIcons["10"].src.night,
     },
   },
   "67": {
     day: {
       description: "Freezing Rain",
-      image: "/public/images/weather_code/10d@2x.png",
+      image: weatherIcons["10"].src.day,
     },
     night: {
       description: "Freezing Rain",
-      image: "/public/images/weather_code/10n@2x.png",
+      image: weatherIcons["10"].src.night,
     },
   },
   "71": {
     day: {
       description: "Light Snow",
-      image: "/public/images/weather_code/13d@2x.png",
+      image: weatherIcons["13"].src.day,
     },
     night: {
       description: "Light Snow",
-      image: "/public/images/weather_code/13n@2x.png",
+      image: weatherIcons["13"].src.night,
     },
   },
   "73": {
     day: {
       description: "Snow",
-      image: "/public/images/weather_code/13d@2x.png",
+      image: weatherIcons["13"].src.day,
     },
     night: {
       description: "Snow",
-      image: "/public/images/weather_code/13n@2x.png",
+      image: weatherIcons["13"].src.night,
     },
   },
   "75": {
     day: {
       description: "Heavy Snow",
-      image: "/public/images/weather_code/13d@2x.png",
+      image: weatherIcons["13"].src.day,
     },
     night: {
       description: "Heavy Snow",
-      image: "/public/images/weather_code/13n@2x.png",
+      image: weatherIcons["13"].src.night,
     },
   },
   "77": {
     day: {
       description: "Snow Grains",
-      image: "/public/images/weather_code/13d@2x.png",
+      image: weatherIcons["13"].src.day,
     },
     night: {
       description: "Snow Grains",
-      image: "/public/images/weather_code/13n@2x.png",
+      image: weatherIcons["13"].src.night,
     },
   },
   "80": {
     day: {
       description: "Light Showers",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Light Showers",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "81": {
     day: {
       description: "Showers",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Showers",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "82": {
     day: {
       description: "Heavy Showers",
-      image: "/public/images/weather_code/09d@2x.png",
+      image: weatherIcons["09"].src.day,
     },
     night: {
       description: "Heavy Showers",
-      image: "/public/images/weather_code/09n@2x.png",
+      image: weatherIcons["09"].src.night,
     },
   },
   "85": {
     day: {
       description: "Light Snow Showers",
-      image: "/public/images/weather_code/13d@2x.png",
+      image: weatherIcons["13"].src.day,
     },
     night: {
       description: "Light Snow Showers",
-      image: "/public/images/weather_code/13n@2x.png",
+      image: weatherIcons["13"].src.night,
     },
   },
   "86": {
     day: {
       description: "Snow Showers",
-      image: "/public/images/weather_code/13d@2x.png",
+      image: weatherIcons["13"].src.day,
     },
     night: {
       description: "Snow Showers",
-      image: "/public/images/weather_code/13n@2x.png",
+      image: weatherIcons["13"].src.night,
     },
   },
   "95": {
     day: {
       description: "Thunderstorm",
-      image: "/public/images/weather_code/11d@2x.png",
+      image: weatherIcons["11"].src.day,
     },
     night: {
       description: "Thunderstorm",
-      image: "/public/images/weather_code/11n@2x.png",
+      image: weatherIcons["11"].src.night,
     },
   },
   "96": {
     day: {
       description: "Light Thunderstorms With Hail",
-      image: "/public/images/weather_code/11d@2x.png",
+      image: weatherIcons["03"].src.day,
     },
     night: {
       description: "Light Thunderstorms With Hail",
-      image: "/public/images/weather_code/11n@2x.png",
+      image: weatherIcons["11"].src.night,
     },
   },
   "99": {
     day: {
       description: "Thunderstorm With Hail",
-      image: "/public/images/weather_code/11d@2x.png",
+      image: weatherIcons["03"].src.day,
     },
     night: {
       description: "Thunderstorm With Hail",
-      image: "/public/images/weather_code/11n@2x.png",
+      image: weatherIcons["11"].src.night,
     },
   },
 };

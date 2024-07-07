@@ -1,13 +1,11 @@
-type WeatherCodeDetails = {
+type WeatherCodeItem = {
   description: string;
   image: string;
 };
 
 type WeatherCode = {
-  day: WeatherCodeDetails;
-  night: WeatherCodeDetails;
+  day: WeatherCodeItem;
+  night: WeatherCodeItem;
 };
 
-export type WeatherCodes = {
-  [key: string]: WeatherCode;
-};
+export type WeatherCodes = Record<string, WeatherCode>;
