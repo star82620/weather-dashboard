@@ -1,8 +1,13 @@
+export type Location = { latitude: number; longitude: number };
+
 export type TemperatureUnit = "°C" | "°F";
-export type LocationType = { latitude: number; longitude: number };
+export type WindSpeedUnit = "km/h" | "mph" | "m/s" | "knots";
+type TimeFormat = unknown; // e.g. "iso8601"
+type TimeZone = unknown; // e.g. "GMT"
+type Interval = unknown; // e.g. "seconds"
 
 // API 參數
-export type PayloadLocation = LocationType;
+export type PayloadLocation = Location;
 
 export type ApiParams = {
   current: Array<
@@ -17,70 +22,95 @@ export type ApiParams = {
 };
 
 // API 回應
-type ResponseData = {
+export type CurrentUnits = {
+  time: TimeFormat;
+  interval: Interval;
+  temperature_2m: TemperatureUnit;
+  relative_humidity_2m: "%";
+  wind_speed_10m: WindSpeedUnit;
+  is_day: 1 | 0;
+  weather_code: "wmo code";
+};
+
+export type DailyUnits = {
+  time: TimeFormat;
+  weather_code: "wmo code";
+  temperature_2m_max: TemperatureUnit;
+  temperature_2m_min: TemperatureUnit;
+};
+
+export type Current = {
+  time: string;
+  interval: number;
+  temperature_2m: number;
+  relative_humidity_2m: number;
+  wind_speed_10m: number;
+  is_day: 0 | 1;
+  weather_code: number;
+};
+
+export type Daily = {
+  time: Array<string>;
+  weather_code: Array<number>;
+  temperature_2m_max: Array<number>;
+  temperature_2m_min: Array<number>;
+};
+
+export type ResponseData = {
   latitude: number;
   longitude: number;
   generationtime_ms: number;
   utc_offset_seconds: number;
-  timezone: "GMT" | string;
-  timezone_abbreviation: "GMT" | string;
-  elevation: number | string;
-  current_units: {
-    time: "iso8601";
-    interval: "seconds" | string;
-    temperature_2m: TemperatureUnit;
-    relative_humidity_2m: "%";
-    wind_speed_10m: "km/h" | "mph" | "m/s" | "knots";
-    is_day: "";
-    weather_code: "wmo code";
-  };
-  current: {
-    time: string;
-    interval: number;
-    temperature_2m: number;
-    relative_humidity_2m: number;
-    wind_speed_10m: number;
-    is_day: 0 | 1;
-    weather_code: number;
-  };
-  daily_units: {
-    time: "iso8601";
-    weather_code: "wmo code";
-    temperature_2m_max: TemperatureUnit;
-    temperature_2m_min: TemperatureUnit;
-  };
-  daily: {
-    time: Array<string>;
-    weather_code: Array<number>;
-    temperature_2m_max: Array<number>;
-    temperature_2m_min: Array<number>;
-  };
+  timezone: TimeZone;
+  timezone_abbreviation: TimeZone;
+  elevation: number;
+  current_units: CurrentUnits;
+  current: Current;
+  daily_units: DailyUnits;
+  daily: Daily;
 };
 
-type ResponseError = {
+export type ResponseError = {
   reason: string;
   error: boolean;
 };
 
 export type ApiResponse = ResponseData | ResponseError;
 
-// 整理過的 Daily forecasts
-type DailyForecasts = {
+// Formatted Data
+export type FormattedDaily = {
   time: string;
   weather_code: number;
-  temperature_2m_max: number;
-  temperature_2m_min: number;
+  temperature_2m_max: {
+    unit: DailyUnits["temperature_2m_max"];
+    value: number;
+  };
+  temperature_2m_min: {
+    unit: DailyUnits["temperature_2m_min"];
+    value: number;
+  };
 };
 
-export type WeatherDataset = {
-  location: LocationType;
-  current: {
-    time: string;
-    temperature_2m: number;
-    relative_humidity_2m: number;
-    wind_speed_10m: number;
-    weather_code: number;
-    is_day: 0 | 1;
+export type FormattedCurrent = {
+  time: string;
+  weather_code: number;
+  is_day: Current["is_day"];
+  temperature_2m: {
+    unit: CurrentUnits["temperature_2m"];
+    value: Current["temperature_2m"];
   };
-  forecasts: DailyForecasts[];
+  relative_humidity_2m: {
+    unit: CurrentUnits["relative_humidity_2m"];
+    value: Current["relative_humidity_2m"];
+  };
+  wind_speed_10m: {
+    unit: CurrentUnits["wind_speed_10m"];
+    value: Current["wind_speed_10m"];
+  };
+};
+
+export type FormattedData = {
+  location: Location;
+  current: FormattedCurrent;
+  forecasts: FormattedDaily[];
 };
