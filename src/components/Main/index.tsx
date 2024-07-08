@@ -43,8 +43,6 @@ export default function Main() {
   const city = `Taipei,${location.latitude},${location.longitude}`;
   const { current, forecasts } = weatherData;
 
-  console.log(forecasts);
-
   return (
     <Wrapper>
       <CurrentWeather dataset={current} location={city} />
