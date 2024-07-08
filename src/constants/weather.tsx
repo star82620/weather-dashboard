@@ -1,7 +1,7 @@
 import { WeatherCodes } from "./types/WeatherCodes";
 import { weatherIcons } from "./imagePaths";
 
-export const dafaultTemperatureUnit = "celsius";
+export const defaultTemperatureUnit = "celsius";
 
 export const weatherCodes: WeatherCodes = {
   "0": {

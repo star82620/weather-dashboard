@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { switchUnit } from "../../redux/temperatureUnitSlice";
 import { Button, Wrapper } from "./styled";
