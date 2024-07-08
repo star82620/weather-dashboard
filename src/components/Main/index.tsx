@@ -16,6 +16,8 @@ export default function Main() {
     (state) => state.temperatureUnit.value
   );
 
+  console.log("main", "redux", temperatureUnit);
+
   // 之後也要抓資料傳入
   const location = { latitude: 15, longitude: 121 };
 
@@ -43,7 +45,7 @@ export default function Main() {
   const city = `Taipei,${location.latitude},${location.longitude}`;
   const { current, forecasts } = weatherData;
 
-  console.log(forecasts);
+  // console.log(forecasts);
 
   return (
     <Wrapper>
