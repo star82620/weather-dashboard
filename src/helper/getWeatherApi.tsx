@@ -2,6 +2,7 @@ import {
   ApiParams,
   ApiResponse,
   PayloadLocation,
+  ResponseData,
   TemperatureUnitName,
 } from "../constants/types/WeatherData";
 
@@ -21,7 +22,7 @@ const apiParams: ApiParams = {
 export async function getWeatherApi(
   payloadLocation: PayloadLocation,
   temperatureUnit: TemperatureUnitName
-) {
+): Promise<ResponseData | null> {
   const { latitude, longitude } = payloadLocation;
   const { current, daily, forecast_days } = apiParams;
 
@@ -39,13 +40,14 @@ export async function getWeatherApi(
     const json: ApiResponse = await res.json();
 
     if ("error" in json) {
-      return json.reason;
+      console.log(json.reason);
+      return null;
     }
 
     return json;
   } catch (error) {
     console.error("error:", error);
 
-    return [];
+    return null;
   }
 }
