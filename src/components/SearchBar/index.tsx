@@ -1,8 +1,28 @@
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
+import getGeocodeingApi from "../../helper/getGeocodingApi";
 import { Form, Input, Label, Wrapper } from "./styled";
 
 export default function SearchBar() {
   const [value, setValue] = useState<string>("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const geocodingRes = await getGeocodeingApi(value);
+        console.log("geo", await geocodingRes);
+      } catch (error) {
+        console.error("Error in useGetWeather:", error);
+        return;
+      }
+    };
+    if (!value) return;
+    fetchData();
+  }, [value]);
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
