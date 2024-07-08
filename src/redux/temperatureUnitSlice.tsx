@@ -1,11 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { TemperatureUnitName } from "../constants/types/WeatherData";
+import { dafaultTemperatureUnit } from "../constants/weather";
 
 type State = {
   value: TemperatureUnitName;
 };
 
-const initialState: State = { value: "celsius" };
+const initialState: State = { value: dafaultTemperatureUnit };
 
 export const temperatureUnitSlice = createSlice({
   name: "temperatureUnit",
