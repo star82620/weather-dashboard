@@ -1,8 +1,9 @@
 export type Location = { latitude: number; longitude: number };
 
 export type TemperatureUnit = "°C" | "°F";
+export type TemperatureUnitName = "celsius" | "fahrenheit";
 export type WindSpeedUnit = "km/h" | "mph" | "m/s" | "knots";
-type TimeFormat = unknown; // e.g. "iso8601"
+type TimeFormat = "iso8601" | "unixtime";
 type TimeZone = unknown; // e.g. "GMT"
 type Interval = unknown; // e.g. "seconds"
 
