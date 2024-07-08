@@ -3,17 +3,22 @@ import { switchUnit } from "../../redux/temperatureUnitSlice";
 import { Button, Wrapper } from "./styled";
 
 export default function TemperatureUnitSwitch() {
-  const active = useAppSelector((state) => state.temperatureUnit.value);
   const dispatch = useAppDispatch();
+  const active = useAppSelector((state) => state.temperatureUnit.value);
+
+  console.log("redux", active);
 
   const isCelsius = active === "celsius";
   const isFahrenheit = active === "fahrenheit";
 
   const handleSwitch = () => {
     if (active === "celsius") {
-      return dispatch(switchUnit("fahrenheit"));
+      dispatch(switchUnit("fahrenheit"));
+      localStorage.setItem("temperatureUnit", "fahrenheit");
+      return;
     }
     dispatch(switchUnit("celsius"));
+    localStorage.setItem("temperatureUnit", "celsius");
   };
 
   return (

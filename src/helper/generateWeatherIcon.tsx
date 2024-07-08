@@ -1,4 +1,4 @@
-import { weatherCodes } from "../constants/weatherCodes";
+import { weatherCodes } from "../constants/weather";
 import { Image } from "../constants/style/commonStyled";
 
 export const generateWeatherIcon = (
