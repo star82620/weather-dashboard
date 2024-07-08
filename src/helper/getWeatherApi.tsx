@@ -2,6 +2,7 @@ import {
   ApiParams,
   ApiResponse,
   PayloadLocation,
+  TemperatureUnitName,
 } from "../constants/types/WeatherData";
 
 const baseUrl = import.meta.env.VITE_API_URL_WEATHER;
@@ -17,11 +18,14 @@ const apiParams: ApiParams = {
   forecast_days: 5,
 };
 
-export async function getWeatherApi(payloadLocation: PayloadLocation) {
+export async function getWeatherApi(
+  payloadLocation: PayloadLocation,
+  temperatureUnit: TemperatureUnitName
+) {
   const { latitude, longitude } = payloadLocation;
   const { current, daily, forecast_days } = apiParams;
 
-  const apiUrl = `${baseUrl}?latitude=${latitude}&longitude=${longitude}&current=${current.join()}&daily=${daily.join()}&forecast_days=${forecast_days}`;
+  const apiUrl = `${baseUrl}?latitude=${latitude}&longitude=${longitude}&current=${current.join()}&daily=${daily.join()}&forecast_days=${forecast_days}&temperature_unit=${temperatureUnit}`;
 
   const options = {
     method: "GET",
