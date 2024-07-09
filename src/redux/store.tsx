@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import temperatureUnitReducer from "./temperatureUnitSlice";
 import locationReducer from "./locationSlice";
-import themeModeReducer from "./themeModeSlice";
+import themeReducer from "./themeSlice";
 
 export const store = configureStore({
   reducer: {
     temperatureUnit: temperatureUnitReducer,
     location: locationReducer,
-    themeMode: themeModeReducer,
+    theme: themeReducer,
   },
 });
 
