@@ -10,6 +10,7 @@ import {
   Title,
   WeatherIcon,
   Unit,
+  ValueContainer,
 } from "./styled";
 
 type Props = {
@@ -34,19 +35,21 @@ export default function CurrentWeather({ dataset, location }: Props) {
         <Title>{country}</Title>
       </Location>
 
-      {weatherValues.map((value) => {
-        const { key, title } = value;
+      <ValueContainer>
+        {weatherValues.map((value) => {
+          const { key, title } = value;
 
-        return (
-          <TextContainer key={title}>
-            <Content>
-              {dataset[key].value}
-              <Unit>{dataset[key].unit}</Unit>
-            </Content>
-            <Title>{title}</Title>
-          </TextContainer>
-        );
-      })}
+          return (
+            <TextContainer key={title}>
+              <Content>
+                {dataset[key].value}
+                <Unit>{dataset[key].unit}</Unit>
+              </Content>
+              <Title>{title}</Title>
+            </TextContainer>
+          );
+        })}
+      </ValueContainer>
     </Wrapper>
   );
 }
