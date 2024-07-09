@@ -2,6 +2,8 @@ import {
   ChangeEventHandler,
   FormEventHandler,
   MouseEventHandler,
+  useEffect,
+  useRef,
   useState,
 } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
@@ -24,9 +26,11 @@ export default function SearchBar() {
   const currentLocation = useAppSelector((state) => state.location.current);
 
   const [value, setValue] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<LocationDataItem[] | null>(
+  const [locationList, setLocationList] = useState<LocationDataItem[] | null>(
     null
   );
+  const [isListOpen, setIsListOpen] = useState<boolean>(false);
+  const inputRef = useRef(null);
 
   console.log("value", value);
   console.log("currentLocation", currentLocation);
@@ -103,13 +107,14 @@ export default function SearchBar() {
     if (!json.results) return;
 
     setTimeout(() => {
-      setSearchResult(json.results);
+      setLocationList(json.results);
     }, 500);
   };
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
     fetchData();
+    setIsListOpen(true);
   };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
@@ -122,16 +127,19 @@ export default function SearchBar() {
 
     if (locationData) {
       const parsedData = JSON.parse(locationData);
-      // 把現在搜尋的城市存起來，之後要再加一個存到 localStorage
+
       dispatch(updateCurrentLocation(parsedData));
+      localStorage.setItem("currentLocation", locationData);
     }
+
+    setIsListOpen(false);
   };
 
   const Results = () => {
-    console.log("result", searchResult);
-    if (!searchResult) return null;
+    console.log("result", locationList);
+    if (!locationList) return null;
 
-    const results = searchResult.map((location) => {
+    const results = locationList.map((location) => {
       const { id, name, latitude, longitude, country, country_code } = location;
       const imgUrl = `https://open-meteo.com/images/country-flags/${country_code}.svg`;
       const locationData = JSON.stringify({
@@ -153,7 +161,7 @@ export default function SearchBar() {
       );
     });
 
-    return <ResultWrapper>{results}</ResultWrapper>;
+    return <ResultWrapper $isListOpen={isListOpen}>{results}</ResultWrapper>;
   };
 
   return (
@@ -165,6 +173,7 @@ export default function SearchBar() {
             placeholder="Search city"
             value={value}
             onChange={handleInputChange}
+            ref={inputRef}
           />
         </Label>
       </Form>

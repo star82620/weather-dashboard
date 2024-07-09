@@ -1,6 +1,7 @@
-import { TemperatureValue } from "../../../constants/style/commonStyled";
-import { FormattedCurrent } from "../../../constants/types/WeatherData";
 import { generateWeatherIcon } from "../../../helper/generateWeatherIcon";
+import { FormattedLocation } from "../../../constants/types/GeocodingData";
+import { FormattedCurrent } from "../../../constants/types/WeatherData";
+import { TemperatureValue } from "../../../constants/style/commonStyled";
 import {
   Wrapper,
   City,
@@ -17,7 +18,7 @@ import {
 
 type CurrentWeatherProps = {
   dataset: FormattedCurrent;
-  location: string;
+  location: FormattedLocation;
 };
 
 export default function CurrentWeather({
@@ -33,6 +34,8 @@ export default function CurrentWeather({
     wind_speed_10m,
   } = dataset;
 
+  const { name: cityName, country } = location;
+
   const isDay = !!is_day;
   const weatherIcon = generateWeatherIcon(weather_code, isDay);
   const temperatureUnit = temperature_2m.unit;
@@ -41,8 +44,8 @@ export default function CurrentWeather({
     <Wrapper>
       <Time>{time}</Time>
       <Location>
-        <City>{location}</City>
-        <Country>Taiwan</Country>
+        <City>{cityName}</City>
+        <Country>{country}</Country>
       </Location>
       <Temperature>
         <TemperatureValue $unit={temperatureUnit}>

@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+type IsListOpen = { $isListOpen: boolean };
 
 export const Wrapper = styled.div`
   position: relative;
@@ -26,15 +28,21 @@ export const Input = styled.input`
   }
 `;
 
-export const ResultWrapper = styled.div`
+export const ResultWrapper = styled.div<IsListOpen>`
   position: absolute;
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 12px;
   padding: 12px;
   background-color: #fff;
   border: 1px solid #ccc;
+
+  ${({ $isListOpen }) =>
+    $isListOpen &&
+    css`
+      display: flex;
+    `}
 `;
 
 export const ResultItem = styled.div`

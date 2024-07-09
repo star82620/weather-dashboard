@@ -7,10 +7,12 @@ type State = {
   saved: FormattedLocation[] | null; //陣列包物件
 };
 
-// const localStorageUnit = localStorage.getItem("temperatureUnit");
+const localStorageCurrent = JSON.parse(
+  localStorage.getItem("currentLocation") as string
+);
 
 const initialState: State = {
-  current: defaultLocation,
+  current: localStorageCurrent || defaultLocation,
   saved: null,
 };
 

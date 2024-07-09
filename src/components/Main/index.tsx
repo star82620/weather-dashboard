@@ -17,7 +17,7 @@ export default function Main() {
   );
 
   const currentLocation = useAppSelector((state) => state.location.current);
-  const { latitude, longitude } = currentLocation;
+  const { name: cityName, latitude, longitude } = currentLocation;
   const location = {
     latitude,
     longitude,
@@ -45,12 +45,11 @@ export default function Main() {
 
   if (!weatherData) return null;
 
-  const city = `Taipei,${location.latitude},${location.longitude}`;
   const { current, forecasts } = weatherData;
 
   return (
     <Wrapper>
-      <CurrentWeather dataset={current} location={city} />
+      <CurrentWeather dataset={current} location={currentLocation} />
       <Forecast>
         <ForecastTitle>5 Days Forecast</ForecastTitle>
         <Cards dataset={forecasts} />
