@@ -11,18 +11,18 @@ export type LocationDataItem = {
   elevation: number;
   feature_code: FeatureCode;
   country_code: string;
-  admin1_id: number;
-  admin2_id: number;
+  admin1_id?: number;
+  admin2_id?: number;
   timezone: TimeZone;
-  population: number;
+  population?: number;
   country_id: number;
   country: string;
-  admin1: string;
-  admin2: string;
+  admin1?: string;
+  admin2?: string;
 };
 
 export type ResponseData = {
-  result: LocationDataItem[];
+  results: LocationDataItem[];
   generationtime_ms: number;
 };
 
@@ -32,3 +32,13 @@ export type ResponseError = {
 };
 
 export type ApiResponse = ResponseData | ResponseError;
+
+// formatted data
+export type FormattedLocation = {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  country_code: string;
+  country: string;
+};

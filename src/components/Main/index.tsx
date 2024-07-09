@@ -16,36 +16,40 @@ export default function Main() {
     (state) => state.temperatureUnit.value
   );
 
-  // 之後也要抓資料傳入
-  const location = { latitude: 15, longitude: 121 };
+  const currentLocation = useAppSelector((state) => state.location.current);
+  const { latitude, longitude } = currentLocation;
+  const location = {
+    latitude,
+    longitude,
+  };
+  const fetchData = async () => {
+    try {
+      const weatherRes = await getWeatherApi(location, temperatureUnit);
+
+      if (!weatherRes) return;
+
+      const formattedData = await formatWeatherData(weatherRes);
+
+      return setWeatherData(await formattedData);
+    } catch (error) {
+      console.error("Error in useGetWeather:", error);
+      return;
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const weatherRes = await getWeatherApi(location, temperatureUnit);
-
-        if (!weatherRes) return;
-
-        const formattedData = await formatWeatherData(weatherRes);
-
-        return setWeatherData(await formattedData);
-      } catch (error) {
-        console.error("Error in useGetWeather:", error);
-        return;
-      }
-    };
-
+    if (isNaN(Number(latitude)) || isNaN(Number(longitude)))
+      return alert("錯誤");
     fetchData();
   }, [temperatureUnit]);
 
   if (!weatherData) return null;
 
-  const city = `Taipei,${location.latitude},${location.longitude}`;
   const { current, forecasts } = weatherData;
 
   return (
     <Wrapper>
-      <CurrentWeather dataset={current} location={city} />
+      <CurrentWeather dataset={current} location={currentLocation} />
       <Forecast>
         <ForecastTitle>5 Days Forecast</ForecastTitle>
         <Cards dataset={forecasts} />

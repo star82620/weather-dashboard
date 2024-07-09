@@ -4,6 +4,8 @@ import {
   ResponseData,
 } from "../constants/types/GeocodingData";
 
+const proxy = import.meta.env.VITE_API_PROXY_URL;
+const proxyKey = import.meta.env.VITE_API_PROXY_KEY;
 const baseUrl = import.meta.env.VITE_API_URL_GEOCODING;
 const apiParams = {
   name: "",
@@ -17,12 +19,13 @@ export default async function getLocationData(
 
   const { name, count } = apiParams;
 
-  const apiUrl = `${baseUrl}?count=${count}&name=${name}`;
+  const apiUrl = `${proxy}${baseUrl}?count=${count}&name=${name}`;
 
   const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "x-cors-api-key": proxyKey,
     },
   };
 
@@ -34,7 +37,6 @@ export default async function getLocationData(
       return null;
     }
     return json;
-    // return null;
   } catch (error) {
     console.error("error:", error);
 
