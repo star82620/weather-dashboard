@@ -1,33 +1,48 @@
 import { FormattedDaily } from "../../constants/types/WeatherData";
-import { TemperatureValue } from "../../constants/style/commonStyled";
 import { generateWeatherIcon } from "../../helper/generateWeatherIcon";
-import { CardContainer, DateText, CardsWrapper, ImageWrapper } from "./styled";
-import Card from "../Card";
+import {
+  CardContainer,
+  DateText,
+  CardsWrapper,
+  ImageWrapper,
+  Forecast,
+  ForecastTitle,
+  DayCard,
+  Temperature,
+} from "./styled";
 
-type CardsProps = { dataset: FormattedDaily[] };
+type Props = { dataset: FormattedDaily[] };
 
-export default function Cards({ dataset }: CardsProps) {
+export default function Cards({ dataset }: Props) {
   if (!Array.isArray(dataset)) return null;
+
+  console.log("forecast", dataset);
 
   const cards = dataset.map((card) => {
     const { time, weather_code, temperature_2m_max, temperature_2m_min } = card;
     const minTemperature = temperature_2m_min.value;
     const maxTemperature = temperature_2m_max.value;
-    const weatherIcon = generateWeatherIcon(weather_code);
     const temperatureUnit = temperature_2m_min.unit;
+    const weatherIcon = generateWeatherIcon(weather_code);
 
     return (
-      <Card key={time}>
+      <DayCard key={time}>
         <CardContainer>
           <ImageWrapper>{weatherIcon}</ImageWrapper>
           <DateText>{time}</DateText>
-          <TemperatureValue $unit={temperatureUnit}>
+          <Temperature>
             {minTemperature}~{maxTemperature}
-          </TemperatureValue>
+            {temperatureUnit}
+          </Temperature>
         </CardContainer>
-      </Card>
+      </DayCard>
     );
   });
 
-  return <CardsWrapper>{cards}</CardsWrapper>;
+  return (
+    <Forecast>
+      <ForecastTitle>Forecast</ForecastTitle>
+      <CardsWrapper>{cards}</CardsWrapper>
+    </Forecast>
+  );
 }

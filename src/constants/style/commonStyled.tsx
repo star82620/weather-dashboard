@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 
-type Unit = {
+export type TemperatureUnit = {
   $unit: string;
 };
 
-export const TemperatureValue = styled.div<Unit>`
+export const TemperatureValue = styled.div<TemperatureUnit>`
   ${({ $unit }) =>
     $unit &&
     css`
@@ -23,4 +23,12 @@ export const Image = styled.img`
 export const pagePadding = css`
   padding-left: 24px;
   padding-right: 24px;
+  max-width: 1024px;
+`;
+
+export const cardWrapper = css`
+  background-color: ${({ theme }) => theme.mode.cardBg};
+  border: 1px solid ${({ theme }) => theme.mode.cardBorder};
+  border-radius: ${({ theme }) => theme.borderRadius.common};
+  box-shadow: 0px 0px 1px ${({ theme }) => theme.mode.cardShadow};
 `;

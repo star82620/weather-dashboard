@@ -4,7 +4,7 @@ import { pagePadding } from "../../constants/style/commonStyled";
 export const Wrapper = styled.div`
   width: 100%;
   padding: 20px 0;
-  background-color: #ddd;
+
   ${pagePadding}
 `;
 
@@ -19,19 +19,21 @@ export const Container = styled.div`
   overflow-x: scroll;
 `;
 
-export const Location = styled.button`
+export const Card = styled.button`
   display: flex;
   align-items: center;
   width: 150px;
   height: 150px;
   padding: 8px;
-  border: 1px solid transparent;
+  color: ${({ theme }) => theme.mode.primaryText};
   border-radius: ${({ theme }) => theme.borderRadius.common};
-  background-color: #f4f4f4;
+  border: 1px solid ${({ theme }) => theme.mode.cardBorder};
+  /* background-color: ${({ theme }) => theme.mode.cardBg}; */
+  /* box-shadow: 0px 0px 1px ${({ theme }) => theme.mode.cardShadow}; */
 
   &:hover {
-    border: 1px solid #f0f0f0;
-    background-color: #f4f4f4;
+    border: 1px solid ${({ theme }) => theme.mode.cardBorderHover};
+    background-color: ${({ theme }) => theme.mode.cardBgHover};
   }
 `;
 

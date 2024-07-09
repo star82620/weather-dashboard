@@ -7,9 +7,11 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: fit-content;
-  padding: 4px 8px;
-  background: #f0f0f0;
+  padding: 4px;
+  background: ${({ theme }) => theme.mode.cardBg};
   border-radius: ${({ theme }) => theme.borderRadius.common};
+  border: 1px solid ${({ theme }) => theme.mode.cardBorder};
+  box-shadow: 0px 0px 1px ${({ theme }) => theme.mode.cardShadow};
 `;
 export const Button = styled.button<IsActive>`
   min-width: 40px;
@@ -20,8 +22,8 @@ export const Button = styled.button<IsActive>`
   ${({ $isActive }) =>
     $isActive &&
     css`
-      color: #fff;
-      background-color: ${({ theme }) => theme.colors.primary};
-      box-shadow: 0px 0px 4px #ddd;
+      color: ${({ theme }) => theme.mode.secondaryText};
+      background-color: ${({ theme }) => theme.mode.point};
+      box-shadow: 0px 0px 2px ${({ theme }) => theme.mode.cardShadow};
     `}
 `;

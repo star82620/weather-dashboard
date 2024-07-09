@@ -5,12 +5,14 @@ import { formatWeatherData } from "../../helper/formatWeatherData";
 import CurrentWeather from "./CurrentWeather";
 import Cards from "./Cards";
 import { FormattedData } from "../../constants/types/WeatherData";
-import { Wrapper, Forecast, ForecastTitle } from "./styled";
+import { Wrapper } from "./styled";
 
 type WeatherData = FormattedData | null;
 
 export default function Main() {
   const [weatherData, setWeatherData] = useState<WeatherData>(null);
+
+  console.log("main", weatherData);
 
   const temperatureUnit = useAppSelector(
     (state) => state.temperatureUnit.value
@@ -50,10 +52,8 @@ export default function Main() {
   return (
     <Wrapper>
       <CurrentWeather dataset={current} location={currentLocation} />
-      <Forecast>
-        <ForecastTitle>5 Days Forecast</ForecastTitle>
-        <Cards dataset={forecasts} />
-      </Forecast>
+      {/* <Hr /> */}
+      <Cards dataset={forecasts} />
     </Wrapper>
   );
 }
