@@ -17,7 +17,7 @@ export default function Main() {
   );
 
   const currentLocation = useAppSelector((state) => state.location.current);
-  const { name: cityName, latitude, longitude } = currentLocation;
+  const { latitude, longitude } = currentLocation;
   const location = {
     latitude,
     longitude,
