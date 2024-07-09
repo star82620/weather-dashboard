@@ -15,9 +15,7 @@ const apiParams = {
 export default async function getLocationData(
   payloadName: PayloadName
 ): Promise<ResponseData | null> {
-  // apiParams.name = payloadName;
-
-  apiParams.name = "Tainan";
+  apiParams.name = payloadName;
 
   const { name, count } = apiParams;
 
