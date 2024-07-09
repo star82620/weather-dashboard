@@ -9,19 +9,11 @@ import { useAppDispatch } from "../../hooks/redux";
 import { updateCurrentLocation } from "../../redux/locationSlice";
 import getLocationData from "../../helper/getGeocodingApi";
 import { LocationDataItem } from "../../constants/types/GeocodingData";
-import {
-  Form,
-  Input,
-  Label,
-  ResultItem,
-  ResultWrapper,
-  Wrapper,
-} from "./styled";
-import useSaveLocation from "../../hooks/useSaveLocation";
+import Results from "./Results";
+import { Form, Input, Label, Wrapper } from "./styled";
 
 export default function SearchBar() {
   const dispatch = useAppDispatch();
-  const saveLocation = useSaveLocation();
 
   const [value, setValue] = useState<string>("");
   const [locationList, setLocationList] = useState<LocationDataItem[] | null>(
@@ -67,42 +59,6 @@ export default function SearchBar() {
     setIsListOpen(false);
   };
 
-  const Results = () => {
-    if (!locationList) return null;
-
-    const results = locationList.map((location) => {
-      const { id, name, latitude, longitude, country, country_code } = location;
-      const imgUrl = `https://open-meteo.com/images/country-flags/${country_code}.svg`;
-      const locationDate = {
-        id,
-        name,
-        latitude,
-        longitude,
-        country_code,
-        country,
-      };
-      const locationDataString = JSON.stringify(locationDate);
-      return (
-        <ResultItem
-          key={id}
-          data-location={locationDataString}
-          onClick={handleClick}
-        >
-          <img src={imgUrl} alt={country_code} height="20" width="20" />
-          <p>name:{name}</p>
-          <p>country:{country}</p>
-          <p>latitude:{latitude}</p>
-          <p>longitude:{longitude}</p>
-          <button type="button" onClick={() => saveLocation(locationDate)}>
-            save
-          </button>
-        </ResultItem>
-      );
-    });
-
-    return <ResultWrapper $isListOpen={isListOpen}>{results}</ResultWrapper>;
-  };
-
   return (
     <Wrapper>
       <Form onSubmit={handleSubmit}>
@@ -117,7 +73,11 @@ export default function SearchBar() {
         </Label>
       </Form>
 
-      <Results />
+      <Results
+        locationList={locationList}
+        isListOpen={isListOpen}
+        handleClick={handleClick}
+      />
     </Wrapper>
   );
 }
