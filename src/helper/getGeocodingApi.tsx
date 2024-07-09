@@ -4,8 +4,8 @@ import {
   ResponseData,
 } from "../constants/types/GeocodingData";
 
-const proxy = import.meta.env.API_PROXY_URL;
-const proxyKey = import.meta.env.API_PROXY_KEY;
+const proxy = import.meta.env.VITE_API_PROXY_URL;
+const proxyKey = import.meta.env.VITE_API_PROXY_KEY;
 const baseUrl = import.meta.env.VITE_API_URL_GEOCODING;
 const apiParams = {
   name: "",
@@ -15,7 +15,9 @@ const apiParams = {
 export default async function getLocationData(
   payloadName: PayloadName
 ): Promise<ResponseData | null> {
-  apiParams.name = payloadName;
+  // apiParams.name = payloadName;
+
+  apiParams.name = "Tainan";
 
   const { name, count } = apiParams;
 

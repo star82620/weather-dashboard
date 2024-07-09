@@ -22,7 +22,7 @@ export type LocationDataItem = {
 };
 
 export type ResponseData = {
-  result: LocationDataItem[];
+  results: LocationDataItem[];
   generationtime_ms: number;
 };
 
