@@ -24,6 +24,8 @@ export async function getWeatherApi(
   temperatureUnit: TemperatureUnitName
 ): Promise<ResponseData | null> {
   const { latitude, longitude } = payloadLocation;
+  if (isNaN(Number(latitude)) || isNaN(Number(longitude))) return null;
+
   const { current, daily, forecast_days } = apiParams;
 
   const apiUrl = `${baseUrl}?latitude=${latitude}&longitude=${longitude}&current=${current.join()}&daily=${daily.join()}&forecast_days=${forecast_days}&temperature_unit=${temperatureUnit}`;

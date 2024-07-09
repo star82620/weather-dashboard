@@ -2,6 +2,14 @@ import { WeatherCodes } from "./types/WeatherCodes";
 import { weatherIcons } from "./imagePaths";
 
 export const defaultTemperatureUnit = "celsius";
+export const defaultLocation = {
+  id: 1668355,
+  name: "Tainan City",
+  latitude: 22.99083,
+  longitude: 120.21333,
+  country_code: "TW",
+  country: "Taiwan",
+};
 
 export const weatherCodes: WeatherCodes = {
   "0": {
