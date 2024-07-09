@@ -11,9 +11,36 @@ const localStorageCurrent = JSON.parse(
   localStorage.getItem("currentLocation") as string
 );
 
+const savedLocations: FormattedLocation[] = [
+  {
+    id: 1668355,
+    name: "Tainan City",
+    latitude: 22.99083,
+    longitude: 120.21333,
+    country_code: "TW",
+    country: "Taiwan",
+  },
+  {
+    id: 1668341,
+    name: "Taipei",
+    latitude: 25.04776,
+    longitude: 121.53185,
+    country_code: "TW",
+    country: "Taiwan",
+  },
+  {
+    id: 1850147,
+    name: "Tokyo",
+    latitude: 35.6895,
+    longitude: 139.69171,
+    country_code: "JP",
+    country: "Japan",
+  },
+];
+
 const initialState: State = {
   current: localStorageCurrent || defaultLocation,
-  saved: null,
+  saved: savedLocations,
 };
 
 export const locationSlice = createSlice({
