@@ -17,9 +17,11 @@ import {
   ResultWrapper,
   Wrapper,
 } from "./styled";
+import useSaveLocation from "../../hooks/useSaveLocation";
 
 export default function SearchBar() {
   const dispatch = useAppDispatch();
+  const saveLocation = useSaveLocation();
 
   const [value, setValue] = useState<string>("");
   const [locationList, setLocationList] = useState<LocationDataItem[] | null>(
@@ -71,21 +73,29 @@ export default function SearchBar() {
     const results = locationList.map((location) => {
       const { id, name, latitude, longitude, country, country_code } = location;
       const imgUrl = `https://open-meteo.com/images/country-flags/${country_code}.svg`;
-      const locationData = JSON.stringify({
+      const locationDate = {
         id,
         name,
         latitude,
         longitude,
         country_code,
         country,
-      });
+      };
+      const locationDataString = JSON.stringify(locationDate);
       return (
-        <ResultItem key={id} data-location={locationData} onClick={handleClick}>
+        <ResultItem
+          key={id}
+          data-location={locationDataString}
+          onClick={handleClick}
+        >
           <img src={imgUrl} alt={country_code} height="20" width="20" />
           <p>name:{name}</p>
           <p>country:{country}</p>
           <p>latitude:{latitude}</p>
           <p>longitude:{longitude}</p>
+          <button type="button" onClick={() => saveLocation(locationDate)}>
+            save
+          </button>
         </ResultItem>
       );
     });
@@ -106,6 +116,7 @@ export default function SearchBar() {
           />
         </Label>
       </Form>
+
       <Results />
     </Wrapper>
   );

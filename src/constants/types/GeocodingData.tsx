@@ -11,6 +11,7 @@ export type LocationDataItem = {
   elevation: number;
   feature_code: FeatureCode;
   country_code: string;
+  postcodes?: unknown;
   admin1_id?: number;
   admin2_id?: number;
   timezone: TimeZone;

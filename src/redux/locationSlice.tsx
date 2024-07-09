@@ -2,45 +2,21 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { FormattedLocation } from "../constants/types/GeocodingData";
 import { defaultLocation } from "../constants/weather";
 
-type State = {
+type InitialState = {
   current: FormattedLocation; //物件
-  saved: FormattedLocation[] | null; //陣列包物件
+  saved: FormattedLocation[] | []; //陣列包物件
 };
 
-const localStorageCurrent = JSON.parse(
+const localStorageCurrent: FormattedLocation = JSON.parse(
   localStorage.getItem("currentLocation") as string
 );
+const localStorageSaved: FormattedLocation[] = JSON.parse(
+  localStorage.getItem("savedLocations") as string
+);
 
-const savedLocations: FormattedLocation[] = [
-  {
-    id: 1668355,
-    name: "Tainan City",
-    latitude: 22.99083,
-    longitude: 120.21333,
-    country_code: "TW",
-    country: "Taiwan",
-  },
-  {
-    id: 1668341,
-    name: "Taipei",
-    latitude: 25.04776,
-    longitude: 121.53185,
-    country_code: "TW",
-    country: "Taiwan",
-  },
-  {
-    id: 1850147,
-    name: "Tokyo",
-    latitude: 35.6895,
-    longitude: 139.69171,
-    country_code: "JP",
-    country: "Japan",
-  },
-];
-
-const initialState: State = {
+const initialState: InitialState = {
   current: localStorageCurrent || defaultLocation,
-  saved: savedLocations,
+  saved: localStorageSaved || [],
 };
 
 export const locationSlice = createSlice({
