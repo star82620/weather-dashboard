@@ -2,10 +2,14 @@ import {
   ChangeEventHandler,
   FormEventHandler,
   MouseEventHandler,
-  useEffect,
   useState,
 } from "react";
-import getGeocodeingApi from "../../helper/getGeocodingApi";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { updateCurrentLocation } from "../../redux/locationSlice";
+import {
+  LocationDataItem,
+  ResponseData,
+} from "../../constants/types/GeocodingData";
 import {
   Form,
   Input,
@@ -14,46 +18,18 @@ import {
   ResultWrapper,
   Wrapper,
 } from "./styled";
-import {
-  LocationDataItem,
-  ResponseData,
-} from "../../constants/types/GeocodingData";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { updateCurrentLocation } from "../../redux/locationSlice";
-
-// const debounce = (callback, delay = 250) => {
-//   let timerId;
-
-//   console.log("timerId", timerId);
-
-//   const executeFunc = (...args) => {
-//     console.log("L");
-//     // 清除先前的計時器，以確保 callback 只在延遲時間後調用一次
-//     clearTimeout(timerId);
-//     // 設置新的計時器
-//     timerId = setTimeout(() => {
-//       // 延遲時間到後執行回調函數
-//       callback(...args);
-//     }, delay);
-//   };
-
-//   return executeFunc;
-// };
 
 export default function SearchBar() {
   const dispatch = useAppDispatch();
+  const currentLocation = useAppSelector((state) => state.location.current);
 
   const [value, setValue] = useState<string>("");
   const [searchResult, setSearchResult] = useState<LocationDataItem[] | null>(
     null
   );
-  const currentLocation = useAppSelector((state) => state.location.current);
-  // const [currentLocation, setCurrentLocation] = useState(null);
 
   console.log("value", value);
   console.log("currentLocation", currentLocation);
-
-  // const [location, setLocation] = useState<ResponseData | null>(null);
 
   // const fetchData = async () => {
   //   console.log("fetch");
@@ -156,7 +132,7 @@ export default function SearchBar() {
     if (!searchResult) return null;
 
     const results = searchResult.map((location) => {
-      const { id, name, latitude, longitude, country_code, admin1 } = location;
+      const { id, name, latitude, longitude, country, country_code } = location;
       const imgUrl = `https://open-meteo.com/images/country-flags/${country_code}.svg`;
       const locationData = JSON.stringify({
         id,
@@ -164,13 +140,13 @@ export default function SearchBar() {
         latitude,
         longitude,
         country_code,
-        admin1,
+        country,
       });
       return (
         <ResultItem key={id} data-location={locationData} onClick={handleClick}>
           <img src={imgUrl} alt={country_code} height="20" width="20" />
           <p>name:{name}</p>
-          <p>admin1:{admin1}</p>
+          <p>country:{country}</p>
           <p>latitude:{latitude}</p>
           <p>longitude:{longitude}</p>
         </ResultItem>
