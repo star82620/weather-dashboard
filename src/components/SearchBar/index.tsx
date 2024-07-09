@@ -18,6 +18,8 @@ import {
   LocationDataItem,
   ResponseData,
 } from "../../constants/types/GeocodingData";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { updateCurrentLocation } from "../../redux/locationSlice";
 
 // const debounce = (callback, delay = 250) => {
 //   let timerId;
@@ -39,13 +41,17 @@ import {
 // };
 
 export default function SearchBar() {
+  const dispatch = useAppDispatch();
+
   const [value, setValue] = useState<string>("");
   const [searchResult, setSearchResult] = useState<LocationDataItem[] | null>(
     null
   );
-  const [currentLocation, setCurrentLocation] = useState(null);
+  const currentLocation = useAppSelector((state) => state.location.current);
+  // const [currentLocation, setCurrentLocation] = useState(null);
 
   console.log("value", value);
+  console.log("currentLocation", currentLocation);
 
   // const [location, setLocation] = useState<ResponseData | null>(null);
 
@@ -121,7 +127,6 @@ export default function SearchBar() {
     if (!json.results) return;
 
     setTimeout(() => {
-      console.log(json.results);
       setSearchResult(json.results);
     }, 500);
   };
@@ -141,13 +146,12 @@ export default function SearchBar() {
 
     if (locationData) {
       const parsedData = JSON.parse(locationData);
-      // 把現在搜尋的城市存起來
-      setCurrentLocation(parsedData);
-      console.log(parsedData);
+      // 把現在搜尋的城市存起來，之後要再加一個存到 localStorage
+      dispatch(updateCurrentLocation(parsedData));
     }
   };
 
-  const Result = () => {
+  const Results = () => {
     console.log("result", searchResult);
     if (!searchResult) return null;
 
@@ -188,7 +192,7 @@ export default function SearchBar() {
           />
         </Label>
       </Form>
-      <Result />
+      <Results />
     </Wrapper>
   );
 }

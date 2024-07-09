@@ -32,3 +32,13 @@ export type ResponseError = {
 };
 
 export type ApiResponse = ResponseData | ResponseError;
+
+// formatted data
+export type FormattedLocation = {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  country_code: string;
+  admin1: string;
+};
