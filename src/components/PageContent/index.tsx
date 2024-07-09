@@ -7,6 +7,8 @@ import {
 } from "../../constants/weather";
 import Header from "../Header";
 import Main from "../Main";
+import SavedList from "../SavedList";
+import { Content, Wrapper } from "./styled";
 
 export default function PageContent() {
   const dispatch = useAppDispatch();
@@ -31,9 +33,11 @@ export default function PageContent() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
+      <SavedList />
+
       <Header />
       <Main />
-    </>
+    </Wrapper>
   );
 }
