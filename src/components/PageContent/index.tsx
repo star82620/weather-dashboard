@@ -42,9 +42,9 @@ export default function PageContent() {
 
   return (
     <Wrapper>
-      <SavedList />
       <Header />
       <Main />
+      <SavedList />
     </Wrapper>
   );
 }

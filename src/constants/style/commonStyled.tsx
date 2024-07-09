@@ -17,4 +17,10 @@ export const TemperatureValue = styled.div<Unit>`
 export const Image = styled.img`
   width: 100%;
   height: auto;
+  vertical-align: middle;
+`;
+
+export const pagePadding = css`
+  padding-left: 24px;
+  padding-right: 24px;
 `;
