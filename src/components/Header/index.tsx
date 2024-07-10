@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import { ActiveThemeProps } from "../../constants/types/Theme";
 import { useAppDispatch } from "../../hooks/redux";
 import { updateSearchModal } from "../../redux/modalSlice";
-import TemperatureUnitSwitch from "../TemperatureUnitSwitch";
+import TemperatureUnitSwitch from "./TemperatureUnitSwitch";
 import ThemeSwitch from "./ThemeSwitch";
 import { SearchButton, Wrapper } from "./styled";
 
