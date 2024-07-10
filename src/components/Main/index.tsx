@@ -16,13 +16,13 @@ export default function Main() {
   const temperatureUnit = useAppSelector(
     (state) => state.temperatureUnit.value
   );
-
   const currentLocation = useAppSelector((state) => state.location.current);
   const { latitude, longitude } = currentLocation;
   const location = {
     latitude,
     longitude,
   };
+
   const fetchData = async () => {
     try {
       const weatherRes = await getWeatherApi(location, temperatureUnit);
@@ -37,6 +37,10 @@ export default function Main() {
       return;
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [currentLocation]);
 
   useEffect(() => {
     if (isNaN(Number(latitude)) || isNaN(Number(longitude)))
