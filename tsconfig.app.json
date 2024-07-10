@@ -10,11 +10,10 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    "noEmit": false, // 確保這裡設置為 false 或者刪除這一行
     "jsx": "react-jsx",
 
     /* Linting */
