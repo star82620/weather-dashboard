@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.mode.cardBorder};
   box-shadow: 0px 0px 1px ${({ theme }) => theme.mode.cardShadow};
 `;
+
 export const Button = styled.button<IsActive>`
   min-width: 40px;
   height: 90%;

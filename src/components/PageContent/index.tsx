@@ -8,9 +8,13 @@ import {
 import Header from "../Header";
 import Main from "../Main";
 import SavedList from "../SavedList";
+import { ActiveThemeProps } from "../../constants/types/Theme";
 import { Wrapper } from "./styled";
 
-export default function PageContent() {
+export default function PageContent({
+  activeTheme,
+  setActiveTheme,
+}: ActiveThemeProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -42,9 +46,9 @@ export default function PageContent() {
 
   return (
     <Wrapper>
-      <SavedList />
-      <Header />
+      <Header activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
       <Main />
+      <SavedList />
     </Wrapper>
   );
 }
