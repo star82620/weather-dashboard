@@ -5,12 +5,14 @@ import { updateCurrentLocation } from "../../redux/locationSlice";
 import getLocationData from "../../helper/getGeocodingApi";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
+import Loading from "../Loading";
 import { LocationDataItem } from "../../constants/types/GeocodingData";
 import { Modal, ResultList, Wrapper } from "./styled";
 
 export default function SearchModal() {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.searchMode);
+  // const isLoading = useAppSelector((state) => state.loading.search);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isResultListOpen, setIsResultListOpen] = useState<boolean>(false);
@@ -74,7 +76,7 @@ export default function SearchModal() {
               handleChangeWeather={handleChangeWeather}
             />
           ) : (
-            "loading"
+            <Loading />
           )}
         </ResultList>
       </Modal>
