@@ -6,9 +6,14 @@ export default function ThemeSwitch({
   setActiveTheme,
 }: ActiveThemeProps) {
   const handleSwitchTheme = () => {
-    if (activeTheme === "dark") return setActiveTheme("light");
+    if (activeTheme === "dark") {
+      setActiveTheme("light");
+      localStorage.setItem("theme", JSON.stringify("light"));
+      return;
+    }
 
     setActiveTheme("dark");
+    localStorage.setItem("theme", JSON.stringify("dark"));
   };
 
   const isLightActive = activeTheme === "light";

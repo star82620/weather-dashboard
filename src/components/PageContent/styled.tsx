@@ -1,13 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Wrapper = styled.main`
+type StopScroll = {
+  $stopScroll: boolean;
+};
+
+export const Wrapper = styled.main<StopScroll>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
-  /* min-height: 100vh; */
   margin: 0 auto;
   color: ${({ theme }) => theme.mode.primaryText};
+
+  ${({ $stopScroll }) =>
+    $stopScroll &&
+    css`
+      /* max-height: 100vh; */
+      overflow: hidden;
+    `}
 `;

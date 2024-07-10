@@ -8,7 +8,9 @@ import PageContent from "./components/PageContent";
 import { GlobalStyle } from "./constants/style/global";
 
 function App() {
-  const [activeTheme, setActiveTheme] = useState<ActiveTheme>("dark");
+  const storeTheme =
+    JSON.parse(localStorage.getItem("theme") as ActiveTheme) || "dark";
+  const [activeTheme, setActiveTheme] = useState<ActiveTheme>(storeTheme);
   const customTheme = activeTheme === "dark" ? darkTheme : lightTheme;
 
   return (

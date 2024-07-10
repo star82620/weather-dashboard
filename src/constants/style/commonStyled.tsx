@@ -24,3 +24,17 @@ export const cardWrapper = css`
   border-radius: ${({ theme }) => theme.borderRadius.common};
   box-shadow: 0px 0px 1px ${({ theme }) => theme.mode.cardShadow};
 `;
+
+export const cardWrapperHover = css`
+  &:hover {
+    background-color: ${({ theme }) => theme.mode.cardBgHover};
+    border: 1px solid ${({ theme }) => theme.mode.cardBorderHover};
+    box-shadow: 0px 0px 1px ${({ theme }) => theme.mode.cardShadowHover};
+  }
+`;
+
+export const cardWrapperActive = css`
+  background-color: ${({ theme }) => theme.mode.cardBgActive};
+  border: 1px solid ${({ theme }) => theme.mode.cardBorderActive};
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.mode.cardShadowActive};
+`;

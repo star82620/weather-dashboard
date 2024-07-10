@@ -3,12 +3,14 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 export type Theme = "dark" | "light";
 export const defaultTheme: Theme = "dark";
 
+const storeTheme = JSON.parse(localStorage.getItem("theme") as Theme);
+
 type InitialState = {
   active: Theme;
 };
 
 const initialState: InitialState = {
-  active: defaultTheme,
+  active: storeTheme || defaultTheme,
 };
 
 export const themeSlice = createSlice({
