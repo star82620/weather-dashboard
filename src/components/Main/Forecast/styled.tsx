@@ -4,6 +4,13 @@ import breakpoint from "../../../constants/style/breakpoint";
 
 export const Wrapper = styled.section`
   width: 100%;
+  padding: 24px 32px;
+
+  ${cardWrapper};
+
+  @media (${breakpoint.tablet}) {
+    padding: 24px 12px;
+  }
 `;
 
 export const ForecastTitle = styled.h3`
@@ -18,15 +25,14 @@ export const ForecastTitle = styled.h3`
 export const CardsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 12px 24px;
+
   width: 100%;
-  margin-top: 12px;
+  margin-top: 20px;
 
   @media (${breakpoint.tablet}) {
     justify-content: center;
     align-items: start;
-    flex-wrap: wrap;
-    gap: 16px 12px;
+    gap: 0;
   }
 
   @media (${breakpoint.mobile}) {
@@ -45,11 +51,12 @@ export const DayCard = styled.div`
   padding: 16px;
   width: 100%;
 
-  ${cardWrapper}
+  @media (${breakpoint.tablet}) {
+    padding: 0;
+  }
 
   @media (${breakpoint.mobile}) {
     flex-direction: row;
-    padding: 4px 12px 4px 0;
   }
 `;
 
@@ -60,12 +67,75 @@ export const Temperature = styled.p`
 
 export const Value = styled.span`
   display: inline-block;
-  /* font-size: 20px; */
-  margin-right: 8px;
+  margin-right: 4px;
+`;
+
+export const Max = styled.span`
+  display: inline-block;
+  font-size: 24px;
+  margin-bottom: 20px;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 32px;
+    border-left: 1px solid #ddd;
+    transform: rotate(50deg) translate(16px, 10px);
+
+    @media (${breakpoint.tablet}) {
+      transform: rotate(50deg) translate(16px, 20px);
+    }
+
+    @media (${breakpoint.mobile}) {
+      height: 24px;
+      transform: rotate(35deg) translate(10px, -8px);
+      vertical-align: middle;
+    }
+  }
+
+  @media (${breakpoint.tablet}) {
+    margin-bottom: 12px;
+    height: 40px;
+  }
+
+  @media (${breakpoint.mobile}) {
+    margin: 0 24px 0 0;
+  }
+`;
+
+export const Min = styled.span`
+  font-size: 16px;
+  display: inline-block;
+  text-align: right;
+  vertical-align: bottom;
+
+  @media (${breakpoint.tablet}) {
+    display: block;
+    margin-left: 16px;
+  }
+
+  @media (${breakpoint.mobile}) {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+  }
+`;
+
+export const Unit = styled.span`
+  vertical-align: bottom;
+
+  @media (${breakpoint.mobile}) {
+    vertical-align: middle;
+  }
 `;
 
 export const ImageWrapper = styled.div`
   max-width: 60px;
+  margin: 8px 0 4px 0;
 `;
 
-export const Date = styled.p``;
+export const Date = styled.p`
+  font-weight: 700;
+  font-size: 20px;
+`;

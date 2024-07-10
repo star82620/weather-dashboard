@@ -7,6 +7,7 @@ export const Wrapper = styled.main`
   align-items: center;
 
   width: 100%;
+  /* min-height: 100vh; */
   margin: 0 auto;
   color: ${({ theme }) => theme.mode.primaryText};
 `;

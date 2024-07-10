@@ -9,6 +9,9 @@ import {
   DayCard,
   Temperature,
   Value,
+  Min,
+  Max,
+  Unit,
 } from "./styled";
 
 type Props = { dataset: FormattedDaily[] };
@@ -28,13 +31,14 @@ export default function Forecast({ dataset }: Props) {
 
     return (
       <DayCard key={time}>
-        <ImageWrapper>{weatherIcon}</ImageWrapper>
         <Date>{formattedTime}</Date>
+        <ImageWrapper>{weatherIcon}</ImageWrapper>
         <Temperature>
           <Value>
-            {minTemperature}~{maxTemperature}
+            <Max>{maxTemperature}</Max>
+            <Min>{minTemperature}</Min>
           </Value>
-          {temperatureUnit}
+          <Unit>{temperatureUnit}</Unit>
         </Temperature>
       </DayCard>
     );
