@@ -25,11 +25,12 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   display: inline-block;
+  width: 100%;
   padding: 12px 16px 12px 36px;
   color: ${({ theme }) => theme.mode.primaryText};
   ${cardWrapper}
   ${cardWrapperHover}
-  
+  border-radius: ${({ theme }) => theme.borderRadius.smaller};
 
   &:focus {
     ${cardWrapperActive}

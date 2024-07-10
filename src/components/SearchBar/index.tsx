@@ -19,6 +19,8 @@ export default function SearchBar() {
   const [locationList, setLocationList] = useState<LocationDataItem[] | null>(
     null
   );
+
+  console.log("locationList", locationList);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const inputRef = useRef(null);
 

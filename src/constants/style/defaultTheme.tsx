@@ -7,7 +7,9 @@ export const darkTheme = {
   point: "#CAE8E9",
 
   appBg: "#1E1F24",
-  cardBg: "#2e2e3887",
+  maskBg: "#1a1e29d4",
+
+  cardBg: "#2e2e38",
   cardBorder: "#363638",
   cardShadow: "#dddddd45",
 
@@ -27,6 +29,8 @@ export const lightTheme = {
   thirdText: "#afafb0",
 
   appBg: "#f9f8f8",
+  maskBg: "#f9f8f843",
+
   cardBg: "#FBFBFB",
   cardBorder: "#d0d0d0", //*
   cardShadow: "#f6f5f518",
@@ -50,6 +54,8 @@ const colors = {
 
 const borderRadius = {
   common: "36px",
+  sm: "20px",
+  xs: "16px",
   max: "999px",
 };
 

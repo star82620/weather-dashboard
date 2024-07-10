@@ -10,6 +10,7 @@ import Main from "../Main";
 import SavedList from "../SavedList";
 import { ActiveThemeProps } from "../../constants/types/Theme";
 import { Wrapper } from "./styled";
+import SearchModal from "../SearchModal";
 
 export default function PageContent({
   activeTheme,
@@ -49,6 +50,7 @@ export default function PageContent({
       <Header activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
       <Main />
       <SavedList />
+      <SearchModal />
     </Wrapper>
   );
 }
