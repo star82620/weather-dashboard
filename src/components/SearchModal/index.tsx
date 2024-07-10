@@ -1,4 +1,10 @@
-import { ChangeEventHandler, MouseEventHandler, useRef, useState } from "react";
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { updateSearchModal } from "../../redux/modalSlice";
 import { updateCurrentLocation } from "../../redux/locationSlice";
@@ -8,11 +14,11 @@ import Results from "./Results";
 import Loading from "../Loading";
 import { LocationDataItem } from "../../constants/types/GeocodingData";
 import { Modal, ResultList, Wrapper } from "./styled";
+import { debounce } from "../../helper/debounce";
 
 export default function SearchModal() {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.searchMode);
-  // const isLoading = useAppSelector((state) => state.loading.search);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isResultListOpen, setIsResultListOpen] = useState<boolean>(false);
@@ -27,7 +33,6 @@ export default function SearchModal() {
 
     try {
       const geocodingRes = await getLocationData(value);
-
       if (!geocodingRes) return;
       setResultDataset(geocodingRes.results);
     } catch (error) {
@@ -36,10 +41,14 @@ export default function SearchModal() {
     }
   };
 
+  const debouncedGetData = useCallback(debounce(fetchData, 500), []);
+
   // onChange function of search input
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearchValue(e.target.value);
-    fetchData(e.target.value);
+    debouncedGetData(e.target.value);
+
+    if (isResultListOpen) return;
     setIsResultListOpen(true);
   };
 
