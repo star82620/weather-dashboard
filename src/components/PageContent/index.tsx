@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { useAppDispatch } from "../../hooks/redux";
 import { switchUnit } from "../../redux/temperatureUnitSlice";
 import {
@@ -8,9 +8,13 @@ import {
 import Header from "../Header";
 import Main from "../Main";
 import SavedList from "../SavedList";
+import { ActiveThemeProps } from "../../constants/types/Theme";
 import { Wrapper } from "./styled";
 
-export default function PageContent() {
+export default function PageContent({
+  activeTheme,
+  setActiveTheme,
+}: ActiveThemeProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -42,7 +46,7 @@ export default function PageContent() {
 
   return (
     <Wrapper>
-      <Header />
+      <Header activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
       <Main />
       <SavedList />
     </Wrapper>
