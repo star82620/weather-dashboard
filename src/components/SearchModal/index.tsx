@@ -1,19 +1,12 @@
-import {
-  ChangeEventHandler,
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEventHandler, MouseEventHandler, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { updateSearchModal } from "../../redux/modalSlice";
 import { updateCurrentLocation } from "../../redux/locationSlice";
 import getLocationData from "../../helper/getGeocodingApi";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
 import { LocationDataItem } from "../../constants/types/GeocodingData";
 import { Modal, ResultList, Wrapper } from "./styled";
-import { updateSearchModal } from "../../redux/modalSlice";
 
 export default function SearchModal() {
   const dispatch = useAppDispatch();
