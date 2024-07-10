@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { switchUnit } from "../../redux/temperatureUnitSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { switchUnit } from "../../../redux/temperatureUnitSlice";
 import { Button, Wrapper } from "./styled";
 
 export default function TemperatureUnitSwitch() {
