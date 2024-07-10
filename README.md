@@ -62,7 +62,8 @@ git colon 專案
 | -------- | -------------------------------- |
 | feature/ | 新功能                           |
 | update/  | 更新                             |
-| fix/     | 修復 bug                         |
+| fix/     | 修復錯誤                         |
+| hotfix/  | 修復重大錯誤                     |
 | docs/    | 處理文件、與程式碼邏輯無關的內容 |
 
 ## Git commit 規則
@@ -75,9 +76,11 @@ git colon 專案
 
 ## Git flow
 
-```
-
-```
+| branch  | 說明         | 流程                        |
+| ------- | ------------ | --------------------------- |
+| dev     | 開發環境分支 |                             |
+| main    | 正式環境分支 |                             |
+| feature | 新功能分支   | main → feature → dev → main |
 
 ---
 
@@ -89,6 +92,7 @@ git colon 專案
 - 狀態管理：ReduxToolkit
 - 部屬平台：Vercel
 - 版本控制：Git
+- 單元測試：Jest
 
 ## API 工具與服務
 
