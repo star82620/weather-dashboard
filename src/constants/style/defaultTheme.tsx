@@ -14,10 +14,10 @@ export const darkTheme = {
 };
 
 export const lightTheme = {
-  appBg: "#FFFFFF",
+  appBg: "#f9f8f8",
   cardBg: "#FBFBFB",
-  cardBorder: "#333", //*
-  cardShadow: "#dddddd45",
+  cardBorder: "#bfbebe", //*
+  cardShadow: "#f6f5f518",
   primaryText: "#071D3E",
   secondaryText: "#8C9098",
   point: "#2E69FE",

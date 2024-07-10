@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/redux";
 import { switchUnit } from "../../redux/temperatureUnitSlice";
 import {
