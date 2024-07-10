@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { switchUnit } from "../../redux/temperatureUnitSlice";
 import {
   defaultLocation,
@@ -18,6 +18,7 @@ export default function PageContent({
 }: ActiveThemeProps) {
   const dispatch = useAppDispatch();
 
+  // initialize localStorage
   useEffect(() => {
     // temperature unit
     const storeUnit = localStorage.getItem("temperatureUnit");
@@ -45,8 +46,10 @@ export default function PageContent({
     }
   }, []);
 
+  const isSearchModalOpen = useAppSelector((state) => state.modal.searchMode);
+
   return (
-    <Wrapper>
+    <Wrapper $stopScroll={isSearchModalOpen}>
       <Header activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
       <Main />
       <SavedList />

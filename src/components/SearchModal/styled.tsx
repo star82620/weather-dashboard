@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 import { cardWrapper } from "../../constants/style/commonStyled";
-import { IsResultListOpen } from "./type";
+import { IsModalOpen, IsResultListOpen } from "./type";
 
 // Modal
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<IsModalOpen>`
   position: absolute;
 
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: flex-start;
 
@@ -14,6 +14,12 @@ export const Wrapper = styled.div`
   height: 100vh;
   padding-top: 60px;
   background-color: ${({ theme }) => theme.mode.maskBg};
+
+  ${({ $isModalOpen }) =>
+    $isModalOpen &&
+    css`
+      display: flex;
+    `}
 `;
 
 export const Modal = styled.div`

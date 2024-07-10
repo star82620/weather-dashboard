@@ -15,3 +15,7 @@ export type ResultsProps = {
 export type IsResultListOpen = {
   $isResultListOpen: boolean;
 };
+
+export type IsModalOpen = {
+  $isModalOpen: boolean;
+};

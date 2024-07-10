@@ -1,14 +1,23 @@
-import { ChangeEventHandler, MouseEventHandler, useRef, useState } from "react";
-import { useAppDispatch } from "../../hooks/redux";
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { updateCurrentLocation } from "../../redux/locationSlice";
 import getLocationData from "../../helper/getGeocodingApi";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
 import { LocationDataItem } from "../../constants/types/GeocodingData";
 import { Modal, ResultList, Wrapper } from "./styled";
+import { updateSearchModal } from "../../redux/modalSlice";
 
 export default function SearchModal() {
   const dispatch = useAppDispatch();
+  const isModalOpen = useAppSelector((state) => state.modal.searchMode);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isResultListOpen, setIsResultListOpen] = useState<boolean>(false);
@@ -50,11 +59,16 @@ export default function SearchModal() {
     }
 
     setIsResultListOpen(false);
+    dispatch(updateSearchModal(false));
+  };
+
+  const handleCloseModal = () => {
+    dispatch(updateSearchModal(false));
   };
 
   return (
-    <Wrapper>
-      <Modal>
+    <Wrapper $isModalOpen={isModalOpen} onClick={handleCloseModal}>
+      <Modal onClick={(e) => e.stopPropagation()}>
         <SearchBar
           inputRef={inputRef}
           searchValue={searchValue}
