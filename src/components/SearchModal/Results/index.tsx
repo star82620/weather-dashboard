@@ -1,3 +1,4 @@
+import useSaveLocation from "../../../hooks/useSaveLocation";
 import { ResultsProps } from "../type";
 import {
   City,
@@ -14,6 +15,7 @@ export default function Results({
   handleChangeWeather,
 }: ResultsProps) {
   if (!resultDataset || !resultDataset[0]) return;
+  const saveLocation = useSaveLocation();
 
   const results = resultDataset.map((data) => {
     const { id, name, latitude, longitude, country, country_code } = data;
@@ -42,7 +44,9 @@ export default function Results({
             ({latitude}, {longitude})
           </GeoValue>
         </Values>
-        <Save>⭐️</Save>
+        <Save type="button" onClick={() => saveLocation(locationDate)}>
+          ⭐️
+        </Save>
       </ResultItem>
     );
   });

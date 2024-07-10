@@ -9,9 +9,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  height: 100%;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   border-radius: ${({ theme }) => theme.borderRadius.common};
 
@@ -22,14 +22,10 @@ export const Container = styled.div`
 export const Card = styled.button`
   display: flex;
   align-items: center;
-  width: 150px;
-  height: 150px;
-  padding: 8px;
+  padding: 12px;
   color: ${({ theme }) => theme.mode.primaryText};
   border-radius: ${({ theme }) => theme.borderRadius.common};
   border: 1px solid ${({ theme }) => theme.mode.cardBorder};
-  /* background-color: ${({ theme }) => theme.mode.cardBg}; */
-  /* box-shadow: 0px 0px 1px ${({ theme }) => theme.mode.cardShadow}; */
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.mode.cardBorderHover};
@@ -44,4 +40,8 @@ export const Image = styled.img`
 
 export const Text = styled.span`
   margin-left: 4px;
+`;
+
+export const Title = styled.h3`
+  margin-bottom: 12px;
 `;
