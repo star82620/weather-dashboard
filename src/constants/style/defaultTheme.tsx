@@ -1,26 +1,43 @@
 import { DefaultTheme } from "styled-components";
 
 export const darkTheme = {
+  primaryText: "#D2D2D3",
+  secondaryText: "#333", //*
+  thirdText: "#767678",
+  point: "#CAE8E9",
+
   appBg: "#1E1F24",
   cardBg: "#2e2e3887",
   cardBorder: "#363638",
   cardShadow: "#dddddd45",
-  primaryText: "#D2D2D3",
-  secondaryText: "#333", //*
-  point: "#CAE8E9",
-  cardBgHover: "#353f44",
+
+  cardBgHover: "#4246487a",
   cardBorderHover: "#363638",
   cardShadowHover: "#dddddd45",
+
+  cardBgActive: "#2e2e3887",
+  cardBorderActive: "#606268",
+  cardShadowActive: "#b9b8b845",
 };
 
 export const lightTheme = {
+  primaryText: "#071D3E",
+  secondaryText: "#eceef0",
+  point: "#5f8998",
+  thirdText: "#afafb0",
+
   appBg: "#f9f8f8",
   cardBg: "#FBFBFB",
-  cardBorder: "#bfbebe", //*
+  cardBorder: "#d0d0d0", //*
   cardShadow: "#f6f5f518",
-  primaryText: "#071D3E",
-  secondaryText: "#8C9098",
-  point: "#2E69FE",
+
+  cardBgHover: "#f1efefa7",
+  cardBorderHover: "#a9aab7", //*
+  cardShadowHover: "#86859217",
+
+  cardBgActive: "#FBFBFB",
+  cardBorderActive: "#bfbebe", //*
+  cardShadowActive: "#f6f5f518",
 };
 
 const colors = {
