@@ -46,7 +46,7 @@ git colon 專案
   .env.example 改為 .env.local
 ```
 
-> ＊由於使用代理
+(\* 由於代理伺服器的開發用金鑰有時間限制，開發者將視情況更新 .env.example 檔案)
 
 啟動專案
 
