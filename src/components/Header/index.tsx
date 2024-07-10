@@ -1,16 +1,26 @@
+import { MouseEventHandler } from "react";
 import { ActiveThemeProps } from "../../constants/types/Theme";
-import SearchBar from "../SearchBar";
+import { useAppDispatch } from "../../hooks/redux";
+import { updateSearchModal } from "../../redux/modalSlice";
 import TemperatureUnitSwitch from "../TemperatureUnitSwitch";
 import ThemeSwitch from "./ThemeSwitch";
-import { Wrapper } from "./styled";
+import { SearchButton, Wrapper } from "./styled";
 
 export default function Header({
   activeTheme,
   setActiveTheme,
 }: ActiveThemeProps) {
+  const dispatch = useAppDispatch();
+
+  const handleSearch: MouseEventHandler = () => {
+    dispatch(updateSearchModal(true));
+  };
+
   return (
     <Wrapper>
-      <SearchBar />
+      <SearchButton type="button" onClick={handleSearch}>
+        🔍 Search
+      </SearchButton>
       <TemperatureUnitSwitch />
       <ThemeSwitch activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
     </Wrapper>

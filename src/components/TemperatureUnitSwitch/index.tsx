@@ -6,8 +6,6 @@ export default function TemperatureUnitSwitch() {
   const dispatch = useAppDispatch();
   const active = useAppSelector((state) => state.temperatureUnit.value);
 
-  console.log("redux", active);
-
   const isCelsius = active === "celsius";
   const isFahrenheit = active === "fahrenheit";
 
