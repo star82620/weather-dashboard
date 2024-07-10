@@ -17,6 +17,12 @@ export default function PageContent({
   setActiveTheme,
 }: ActiveThemeProps) {
   const dispatch = useAppDispatch();
+  const isModalOpen = useAppSelector((state) => state.modal.searchMode);
+
+  // 防滾動
+  useEffect(() => {
+    document.body.style.overflow = isModalOpen ? "hidden" : "auto";
+  }, [isModalOpen]);
 
   // initialize localStorage
   useEffect(() => {
