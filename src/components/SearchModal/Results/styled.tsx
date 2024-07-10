@@ -51,7 +51,7 @@ export const GeoValue = styled.span`
   }
 `;
 
-export const Save = styled.div`
+export const Save = styled.button`
   text-align: center;
   align-self: flex-start;
 `;
