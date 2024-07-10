@@ -19,8 +19,6 @@ type Props = { dataset: FormattedDaily[] };
 export default function Forecast({ dataset }: Props) {
   if (!Array.isArray(dataset)) return null;
 
-  console.log("forecast", dataset);
-
   const cards = dataset.map((card) => {
     const { time, weather_code, temperature_2m_max, temperature_2m_min } = card;
     const minTemperature = temperature_2m_min.value;
