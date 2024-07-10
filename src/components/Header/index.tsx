@@ -19,7 +19,7 @@ export default function Header({
   return (
     <Wrapper>
       <SearchButton type="button" onClick={handleSearch}>
-        🔍
+        🔍 Search
       </SearchButton>
       <TemperatureUnitSwitch />
       <ThemeSwitch activeTheme={activeTheme} setActiveTheme={setActiveTheme} />

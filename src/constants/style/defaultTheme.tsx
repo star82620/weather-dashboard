@@ -13,8 +13,8 @@ export const darkTheme = {
   cardBorder: "#363638",
   cardShadow: "#dddddd45",
 
-  cardBgHover: "#4246487a",
-  cardBorderHover: "#363638",
+  cardBgHover: "#4246489b",
+  cardBorderHover: "#4a4a4c",
   cardShadowHover: "#dddddd45",
 
   cardBgActive: "#2e2e3887",
@@ -25,23 +25,23 @@ export const darkTheme = {
 export const lightTheme = {
   primaryText: "#071D3E",
   secondaryText: "#eceef0",
-  point: "#5f8998",
   thirdText: "#afafb0",
+  point: "#5f8998",
 
   appBg: "#f9f8f8",
-  maskBg: "#f9f8f843",
+  maskBg: "#8b8989c9",
 
   cardBg: "#FBFBFB",
   cardBorder: "#d0d0d0", //*
   cardShadow: "#f6f5f518",
 
-  cardBgHover: "#f1efefa7",
-  cardBorderHover: "#a9aab7", //*
+  cardBgHover: "#f0f0f0",
+  cardBorderHover: "#ebe8e8", //*
   cardShadowHover: "#86859217",
 
   cardBgActive: "#FBFBFB",
-  cardBorderActive: "#bfbebe", //*
-  cardShadowActive: "#f6f5f518",
+  cardBorderActive: "#dcd9d9", //*
+  cardShadowActive: "#9cb4b885",
 };
 
 const colors = {

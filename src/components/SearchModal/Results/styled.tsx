@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import breakpoint from "../../../constants/style/breakpoint";
 
 export const ResultItem = styled.div`
   display: flex;
@@ -19,6 +20,12 @@ export const Image = styled.img`
   border-radius: ${({ theme }) => theme.borderRadius.max};
 `;
 
+export const Values = styled.div`
+  flex: 1;
+  padding-left: 12px;
+  border-left: 1px solid ${({ theme }) => theme.mode.thirdText};
+`;
+
 export const City = styled.p`
   font-size: 20px;
   width: 100%;
@@ -26,20 +33,22 @@ export const City = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
+
 export const Country = styled.span`
   font-size: 16px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
-export const Values = styled.div`
-  flex: 1;
-  padding-left: 12px;
-  border-left: 1px solid ${({ theme }) => theme.mode.thirdText};
-`;
+
 export const GeoValue = styled.span`
   font-size: 14px;
   margin-left: 8px;
+  white-space: nowrap;
+
+  @media (${breakpoint.tablet}) {
+    display: block;
+  }
 `;
 
 export const Save = styled.div`

@@ -15,15 +15,16 @@ export const Label = styled.label`
   &::before {
     content: "🔍";
     position: absolute;
-    left: 12px;
-    transform: translateY(50%);
+    height: 24px;
+    left: 20px;
+    transform: translateY(20px);
   }
 `;
 
 export const Input = styled.input`
   display: inline-block;
   width: 100%;
-  padding: 12px 16px 12px 36px;
+  padding: 20px 16px 20px 44px;
   color: ${({ theme }) => theme.mode.primaryText};
   ${cardWrapper}
   ${cardWrapperHover}

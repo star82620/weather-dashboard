@@ -17,7 +17,7 @@ export const Wrapper = styled.main<StopScroll>`
   ${({ $stopScroll }) =>
     $stopScroll &&
     css`
-      max-height: 100vh;
+      /* max-height: 100vh; */
       overflow: hidden;
     `}
 `;

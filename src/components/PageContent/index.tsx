@@ -44,6 +44,13 @@ export default function PageContent({
     if (!savedLocations) {
       localStorage.setItem("savedLocations", JSON.stringify([]));
     }
+
+    // theme
+    const theme = localStorage.getItem("theme");
+
+    if (!theme) {
+      localStorage.setItem("theme", JSON.stringify("dark"));
+    }
   }, []);
 
   const isSearchModalOpen = useAppSelector((state) => state.modal.searchMode);
