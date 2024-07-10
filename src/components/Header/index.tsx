@@ -1,8 +1,8 @@
 import { ActiveThemeProps } from "../../constants/types/Theme";
-import SearchBar from "../SearchBar";
+
 import TemperatureUnitSwitch from "../TemperatureUnitSwitch";
 import ThemeSwitch from "./ThemeSwitch";
-import { Wrapper } from "./styled";
+import { SearchButton, Wrapper } from "./styled";
 
 export default function Header({
   activeTheme,
@@ -10,7 +10,7 @@ export default function Header({
 }: ActiveThemeProps) {
   return (
     <Wrapper>
-      <SearchBar />
+      <SearchButton>🔍</SearchButton>
       <TemperatureUnitSwitch />
       <ThemeSwitch activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
     </Wrapper>

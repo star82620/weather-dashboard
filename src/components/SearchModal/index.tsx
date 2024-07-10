@@ -1,108 +1,75 @@
-import SearchBar from "../SearchBar";
-import {
-  City,
-  Country,
-  Desc,
-  GeoValue,
-  Image,
-  Location,
-  Modal,
-  ResultItem,
-  ResultList,
-  Save,
-  Values,
-  Wrapper,
-} from "./styled";
-
-const resultDataset = [
-  {
-    id: 1668355,
-    name: "Tainan City",
-    latitude: 22.99083,
-    longitude: 120.21333,
-    elevation: 26,
-    feature_code: "PPLA2",
-    country_code: "TW",
-    admin1_id: 7280291,
-    admin2_id: 1668352,
-    timezone: "Asia/Taipei",
-    population: 771235,
-    country_id: 1668284,
-    country: "Taiwan",
-    admin1: "Taiwan",
-    admin2: "Tainan",
-  },
-  {
-    id: 1850147,
-    name: "Tokyo",
-    latitude: 35.6895,
-    longitude: 139.69171,
-    elevation: 44.0,
-    feature_code: "PPLC",
-    country_code: "JP",
-    admin1_id: 1850144,
-    timezone: "Asia/Tokyo",
-    population: 8336599,
-    country_id: 1861060,
-    country: "Japan",
-    admin1: "Tokyo",
-  },
-  {
-    id: 1911027,
-    name: "Tainan Suger Airport",
-    latitude: 35.74667,
-    longitude: 111.76361,
-    elevation: 628,
-    feature_code: "PPL",
-    country_code: "TW",
-    admin1_id: 1795912,
-    admin2_id: 1803566,
-    timezone: "Asia/Shanghai",
-    country_id: 1814991,
-    country: "Taiwan",
-    admin1: "Shanxi",
-    admin2: "Linfen Shi",
-  },
-];
+import { ChangeEventHandler, MouseEventHandler, useRef, useState } from "react";
+import { useAppDispatch } from "../../hooks/redux";
+import { updateCurrentLocation } from "../../redux/locationSlice";
+import getLocationData from "../../helper/getGeocodingApi";
+import SearchBar from "./SearchBar";
+import Results from "./Results";
+import { LocationDataItem } from "../../constants/types/GeocodingData";
+import { Modal, ResultList, Wrapper } from "./styled";
 
 export default function SearchModal() {
-  // if (!resultDataset) return ;
+  const dispatch = useAppDispatch();
 
-  const results = resultDataset.map((data) => {
-    const { id, name, latitude, longitude, country, country_code } = data;
-    const imgUrl = `https://open-meteo.com/images/country-flags/${country_code}.svg`;
-    const locationDate = {
-      id,
-      name,
-      latitude,
-      longitude,
-      country_code,
-      country,
-    };
-    const locationDataString = JSON.stringify(locationDate);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isResultListOpen, setIsResultListOpen] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [resultDataset, setResultDataset] = useState<LocationDataItem[] | null>(
+    null
+  );
 
-    return (
-      <ResultItem key={id} data-location={locationDataString}>
-        <Image src={imgUrl} alt={country}></Image>
-        <Values>
-          <City>{name}</City>
-          <Country>{country}</Country>
-          <GeoValue>
-            ({latitude}, {longitude})
-          </GeoValue>
-        </Values>
-        <Save>
-          ⭐️<Desc>Save</Desc>
-        </Save>
-      </ResultItem>
-    );
-  });
+  // search and get Geocoding Api response
+  const fetchData = async (value: string) => {
+    if (!value) return;
+
+    try {
+      const geocodingRes = await getLocationData(value);
+
+      if (!geocodingRes) return;
+      setResultDataset(geocodingRes.results);
+    } catch (error) {
+      console.error("Error in useGetWeather:", error);
+      return;
+    }
+  };
+
+  // onChange function of search input
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setSearchValue(e.target.value);
+    fetchData(e.target.value);
+    setIsResultListOpen(true);
+  };
+
+  // 點擊搜尋結果可更新畫面資料
+  const handleChangeWeather: MouseEventHandler<HTMLInputElement> = (e) => {
+    const locationData = e.currentTarget.dataset["location"];
+
+    if (locationData) {
+      const parsedData = JSON.parse(locationData);
+      dispatch(updateCurrentLocation(parsedData));
+      localStorage.setItem("currentLocation", locationData);
+    }
+
+    setIsResultListOpen(false);
+  };
 
   return (
     <Wrapper>
       <Modal>
-        <SearchBar></SearchBar>
-        <ResultList>{results}</ResultList>
+        <SearchBar
+          inputRef={inputRef}
+          searchValue={searchValue}
+          handleInputChange={handleInputChange}
+        ></SearchBar>
+        <ResultList $isResultListOpen={isResultListOpen}>
+          {resultDataset ? (
+            <Results
+              resultDataset={resultDataset}
+              handleChangeWeather={handleChangeWeather}
+            />
+          ) : (
+            "loading"
+          )}
+        </ResultList>
       </Modal>
     </Wrapper>
   );

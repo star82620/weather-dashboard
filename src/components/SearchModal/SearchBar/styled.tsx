@@ -1,20 +1,17 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {
   cardWrapper,
   cardWrapperActive,
   cardWrapperHover,
-} from "../../constants/style/commonStyled";
+} from "../../../constants/style/commonStyled";
 
-type IsListOpen = { $isListOpen: boolean };
-
-export const Wrapper = styled.div`
-  position: relative;
-`;
+export const Wrapper = styled.div``;
 
 export const Form = styled.form``;
 
 export const Label = styled.label`
   position: relative;
+
   &::before {
     content: "🔍";
     position: absolute;
@@ -30,36 +27,14 @@ export const Input = styled.input`
   color: ${({ theme }) => theme.mode.primaryText};
   ${cardWrapper}
   ${cardWrapperHover}
+
   border-radius: ${({ theme }) => theme.borderRadius.smaller};
 
   &:focus {
     ${cardWrapperActive}
   }
+
   &::placeholder {
     color: ${({ theme }) => theme.mode.thirdText};
-  }
-`;
-
-// Results
-export const ResultWrapper = styled.div<IsListOpen>`
-  position: absolute;
-  width: 100%;
-  display: none;
-  flex-direction: column;
-  gap: 12px;
-  padding: 12px;
-
-  ${cardWrapper}
-
-  ${({ $isListOpen }) =>
-    $isListOpen &&
-    css`
-      display: flex;
-    `}
-`;
-
-export const ResultItem = styled.div`
-  &:hover {
-    background-color: #ddd;
   }
 `;
