@@ -5,7 +5,7 @@ import breakpoint from "../../constants/style/breakpoint";
 
 // Modal
 export const Wrapper = styled.div<IsModalOpen>`
-  position: absolute;
+  position: fixed;
 
   display: none;
   justify-content: center;
