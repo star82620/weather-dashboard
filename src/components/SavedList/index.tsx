@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { updateCurrentLocation } from "../../redux/locationSlice";
 import { FormattedLocation } from "../../constants/types/GeocodingData";
-import { Container, Location, Image, Text, Wrapper } from "./styled";
+import { Container, Card, Image, Text, Wrapper } from "./styled";
 
 // 儲存的地點列表
 export default function SavedList() {
@@ -32,7 +32,7 @@ export default function SavedList() {
       const countryImgUrl = `https://open-meteo.com/images/country-flags/${country_code}.svg`;
 
       return (
-        <Location
+        <Card
           key={id}
           type="button"
           data-location={locationString}
@@ -40,7 +40,7 @@ export default function SavedList() {
         >
           <Image src={countryImgUrl} alt={country} />
           <Text>{name}</Text>
-        </Location>
+        </Card>
       );
     });
 

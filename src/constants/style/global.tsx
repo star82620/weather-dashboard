@@ -4,7 +4,6 @@ const resetStyle = css`
   html,
   body {
     width: 100%;
-    height: 100%;
   }
 
   * {
@@ -77,7 +76,8 @@ html,body {
   font-size: 16px; 
   font-weight: 400;
   line-height: 1.5;
-  background-color: #fbfbfb;
+  
+  background-color: ${({ theme }) => theme.mode.appBg};
 }
 
 
