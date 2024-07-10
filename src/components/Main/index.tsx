@@ -6,6 +6,7 @@ import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
 import { FormattedData } from "../../constants/types/WeatherData";
 import { Wrapper } from "./styled";
+import Loading from "../Loading";
 
 type WeatherData = FormattedData | null;
 
@@ -43,7 +44,7 @@ export default function Main() {
     fetchData();
   }, [temperatureUnit]);
 
-  if (!weatherData) return null;
+  if (!weatherData) return <Loading />;
 
   const { current, forecasts } = weatherData;
 

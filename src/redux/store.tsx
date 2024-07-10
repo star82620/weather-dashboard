@@ -3,6 +3,7 @@ import temperatureUnitReducer from "./temperatureUnitSlice";
 import locationReducer from "./locationSlice";
 import themeReducer from "./themeSlice";
 import modalReducer from "./modalSlice";
+import loadingReducer from "./loadingSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     location: locationReducer,
     theme: themeReducer,
     modal: modalReducer,
+    loading: loadingReducer,
   },
 });
 
