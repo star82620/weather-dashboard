@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { updateCurrentLocation } from "../../redux/locationSlice";
 import { FormattedLocation } from "../../constants/types/GeocodingData";
-import { Container, Card, Image, Text, Wrapper } from "./styled";
+import { Container, Card, Image, Text, Wrapper, Title } from "./styled";
 
 // 儲存的地點列表
 export default function SavedList() {
@@ -49,6 +49,7 @@ export default function SavedList() {
 
   return (
     <Wrapper>
+      <Title>Saved Location</Title>
       <Lists />
     </Wrapper>
   );

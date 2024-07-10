@@ -41,3 +41,7 @@ export const Image = styled.img`
 export const Text = styled.span`
   margin-left: 4px;
 `;
+
+export const Title = styled.h3`
+  margin-bottom: 12px;
+`;
