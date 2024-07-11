@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
+import breakpoint from "../../constants/style/breakpoint";
 import { cardWrapper } from "../../constants/style/commonStyled";
 import { IsModalOpen, IsResultListOpen } from "./type";
-import breakpoint from "../../constants/style/breakpoint";
 
 // Modal
 export const Wrapper = styled.div<IsModalOpen>`
@@ -30,7 +30,6 @@ export const Modal = styled.div`
 
   @media (${breakpoint.mobile}) {
     padding: 0 12px;
-    max-width: 320px;
   }
 `;
 

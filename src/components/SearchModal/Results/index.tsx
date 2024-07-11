@@ -3,8 +3,10 @@ import { ResultsProps } from "../type";
 import {
   City,
   Country,
+  Description,
   GeoValue,
   Image,
+  ImageMobile,
   ResultItem,
   Save,
   Values,
@@ -39,10 +41,13 @@ export default function Results({
         <Image src={imgUrl} alt={country}></Image>
         <Values>
           <City>{name}</City>
-          <Country>{country}</Country>
-          <GeoValue>
-            ({latitude}, {longitude})
-          </GeoValue>
+          <Description>
+            <ImageMobile src={imgUrl} alt={country}></ImageMobile>
+            <Country>{country}</Country>
+            <GeoValue>
+              ({latitude}, {longitude})
+            </GeoValue>
+          </Description>
         </Values>
         <Save type="button" onClick={() => saveLocation(locationDate)}>
           ⭐️

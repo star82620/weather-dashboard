@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: space-evenly;
   align-items: center;
   align-content: flex-end;
-  gap: 48px;
+  gap: 40px;
   width: 100%;
   padding: 20px 40px 20px 20px;
 
@@ -46,7 +46,7 @@ export const ValueContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: nowrap;
-  gap: 40px;
+  gap: 32px;
 
   @media (${breakpoint.tablet}) {
     justify-content: center;
@@ -65,6 +65,10 @@ export const TextContainer = styled.div`
 
 export const Content = styled.p`
   font-size: 32px;
+
+  @media (${breakpoint.tablet}) {
+    text-align: center;
+  }
 `;
 
 export const Unit = styled.span`
@@ -76,7 +80,10 @@ export const Title = styled.h4`
   font-size: 16px;
   margin-top: 8px;
   font-weight: 400;
-  white-space: nowrap;
+
+  @media (${breakpoint.tablet}) {
+    text-align: center;
+  }
 
   @media (${breakpoint.mobile}) {
     font-size: 18px;
