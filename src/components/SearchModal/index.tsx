@@ -6,19 +6,21 @@ import {
   useState,
 } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import getLocationData from "../../helper/getGeocodingApi";
+import { debounce } from "../../helper/debounce";
 import { updateSearchModal } from "../../redux/modalSlice";
 import { updateCurrentLocation } from "../../redux/locationSlice";
-import getLocationData from "../../helper/getGeocodingApi";
+import { updateSearchLoading } from "../../redux/loadingSlice";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
 import Loading from "../Loading";
 import { LocationDataItem } from "../../constants/types/GeocodingData";
-import { Modal, ResultList, Wrapper } from "./styled";
-import { debounce } from "../../helper/debounce";
+import { Error, Modal, ResultList, Wrapper } from "./styled";
 
 export default function SearchModal() {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.searchMode);
+  const isLoading = useAppSelector((state) => state.loading.search);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isResultListOpen, setIsResultListOpen] = useState<boolean>(false);
@@ -26,6 +28,7 @@ export default function SearchModal() {
   const [resultDataset, setResultDataset] = useState<LocationDataItem[] | null>(
     null
   );
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   // search and get Geocoding Api response
   const fetchData = async (value: string) => {
@@ -33,7 +36,12 @@ export default function SearchModal() {
 
     try {
       const geocodingRes = await getLocationData(value);
-      if (!geocodingRes) return;
+
+      dispatch(updateSearchLoading(false));
+
+      if (!geocodingRes?.results)
+        return setErrorMsg("Empty result, please try again QQ");
+
       setResultDataset(geocodingRes.results);
     } catch (error) {
       console.error("Error in useGetWeather:", error);
@@ -45,8 +53,17 @@ export default function SearchModal() {
 
   // onChange function of search input
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    // 將前面的狀態清除
+    if (errorMsg) {
+      setErrorMsg(null);
+    }
+    if (resultDataset) {
+      setResultDataset(null);
+    }
+
     setSearchValue(e.target.value);
     debouncedGetData(e.target.value);
+    dispatch(updateSearchLoading(true));
 
     if (isResultListOpen) return;
     setIsResultListOpen(true);
@@ -79,14 +96,14 @@ export default function SearchModal() {
           handleInputChange={handleInputChange}
         ></SearchBar>
         <ResultList $isResultListOpen={isResultListOpen}>
-          {resultDataset ? (
+          {resultDataset && (
             <Results
               resultDataset={resultDataset}
               handleChangeWeather={handleChangeWeather}
             />
-          ) : (
-            <Loading />
           )}
+          {errorMsg && <Error>{errorMsg}</Error>}
+          {isLoading && <Loading />}
         </ResultList>
       </Modal>
     </Wrapper>
