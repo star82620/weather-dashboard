@@ -23,9 +23,9 @@ export default function SavedList() {
     localStorage.setItem("currentLocation", value);
   };
 
-  const Lists = () => {
-    if (!savedLocations) return null;
+  if (!savedLocations[0]) return null;
 
+  const Lists = () => {
     const contents = savedLocations.map((location) => {
       const { id, name, country_code, country } = location;
       const locationString = JSON.stringify(location);
