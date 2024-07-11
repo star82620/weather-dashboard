@@ -50,3 +50,10 @@ export const ResultList = styled.div<IsResultListOpen>`
       display: flex;
     `}
 `;
+
+export const Error = styled.p`
+  padding: 24px;
+
+  font-size: 20px;
+  color: ${({ theme }) => theme.mode.thirdText};
+`;
