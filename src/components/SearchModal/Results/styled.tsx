@@ -2,6 +2,7 @@ import styled from "styled-components";
 import breakpoint from "../../../constants/style/breakpoint";
 
 export const ResultItem = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -11,6 +12,7 @@ export const ResultItem = styled.div`
   background-color: ${({ theme }) => theme.mode.cardBgHover};
   border: 1px solid ${({ theme }) => theme.mode.cardBorder};
   border-radius: ${({ theme }) => theme.borderRadius.xs};
+  cursor: pointer;
 `;
 
 export const Image = styled.img`
@@ -18,32 +20,62 @@ export const Image = styled.img`
   height: 40px;
   vertical-align: middle;
   border-radius: ${({ theme }) => theme.borderRadius.max};
+
+  @media (${breakpoint.mobile}) {
+    display: none;
+  }
+`;
+
+export const ImageMobile = styled.img`
+  display: none;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  border-radius: ${({ theme }) => theme.borderRadius.max};
+
+  @media (${breakpoint.mobile}) {
+    display: inline-block;
+  }
 `;
 
 export const Values = styled.div`
   flex: 1;
+  max-width: 100%;
   padding-left: 12px;
+  padding-right: 20px;
   border-left: 1px solid ${({ theme }) => theme.mode.thirdText};
+
+  @media (${breakpoint.mobile}) {
+    padding-left: 0px;
+    border-left: none;
+  }
 `;
 
 export const City = styled.p`
   font-size: 20px;
   width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+
+  @media (${breakpoint.mobile}) {
+    white-space: wrap;
+  }
+`;
+
+export const Description = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media (${breakpoint.mobile}) {
+    margin-top: 8px;
+  }
 `;
 
 export const Country = styled.span`
   font-size: 16px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `;
 
 export const GeoValue = styled.span`
   font-size: 14px;
-  margin-left: 8px;
   white-space: nowrap;
 
   @media (${breakpoint.tablet}) {
@@ -52,6 +84,24 @@ export const GeoValue = styled.span`
 `;
 
 export const Save = styled.button`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  position: absolute;
+  right: 12px;
+  top: 12px;
+
+  width: 24px;
+  height: 24px;
   text-align: center;
-  align-self: flex-start;
+  vertical-align: middle;
+  background-color: ${({ theme }) => theme.mode.maskBg};
+  border-radius: ${({ theme }) => theme.borderRadius.max};
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.mode.thirdText};
+    border: 1px solid ${({ theme }) => theme.mode.cardBorder};
+  }
 `;
