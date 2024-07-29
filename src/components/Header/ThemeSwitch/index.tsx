@@ -1,18 +1,19 @@
-import { ActiveThemeProps } from "../../../constants/types/Theme";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { updateTheme } from "../../../redux/themeSlice";
 import { Wrapper, Button } from "./styled";
 
-export default function ThemeSwitch({
-  activeTheme,
-  setActiveTheme,
-}: ActiveThemeProps) {
+export default function ThemeSwitch() {
+  const dispatch = useAppDispatch();
+  const activeTheme = useAppSelector((state) => state.theme.active);
+
   const handleSwitchTheme = () => {
     if (activeTheme === "dark") {
-      setActiveTheme("light");
+      dispatch(updateTheme("light"));
       localStorage.setItem("theme", JSON.stringify("light"));
       return;
     }
 
-    setActiveTheme("dark");
+    dispatch(updateTheme("dark"));
     localStorage.setItem("theme", JSON.stringify("dark"));
   };
 
