@@ -8,14 +8,10 @@ import {
 import Header from "../Header";
 import Main from "../Main";
 import SavedList from "../SavedList";
-import { ActiveThemeProps } from "../../constants/types/Theme";
 import { Wrapper } from "./styled";
 import SearchModal from "../SearchModal";
 
-export default function PageContent({
-  activeTheme,
-  setActiveTheme,
-}: ActiveThemeProps) {
+export default function PageContent() {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.searchMode);
 
@@ -63,7 +59,7 @@ export default function PageContent({
 
   return (
     <Wrapper $stopScroll={isSearchModalOpen}>
-      <Header activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
+      <Header />
       <Main />
       <SavedList />
       <SearchModal />
