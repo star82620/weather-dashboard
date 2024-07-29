@@ -8,18 +8,17 @@ const proxy = import.meta.env.VITE_API_PROXY_URL;
 const proxyKey = import.meta.env.VITE_API_PROXY_KEY;
 const baseUrl = import.meta.env.VITE_API_URL_GEOCODING;
 const apiParams = {
-  name: "",
   count: 3,
 };
 
 export default async function getLocationData(
   payloadName: PayloadName
 ): Promise<ResponseData | null> {
-  apiParams.name = payloadName;
+  const locationName = payloadName || "";
 
-  const { name, count } = apiParams;
+  const { count } = apiParams;
 
-  const apiUrl = `${proxy}${baseUrl}?count=${count}&name=${name}`;
+  const apiUrl = `${proxy}${baseUrl}?count=${count}&name=${locationName}`;
 
   const options = {
     method: "GET",
