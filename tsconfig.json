@@ -7,5 +7,25 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest"],
+    "outDir": "./dist",
+    "jsx": "react"
+  },
+  "include": [
+    "src",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.test.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
 }
